@@ -24,7 +24,6 @@ public class Farmer {
 	@GeneratedValue(generator = "farmer_id_sequence", strategy = GenerationType.SEQUENCE)
 	private Long farmerId;
 	
-	
 	@Column(name = "farmer_name")
 	private String farmerName;
 	

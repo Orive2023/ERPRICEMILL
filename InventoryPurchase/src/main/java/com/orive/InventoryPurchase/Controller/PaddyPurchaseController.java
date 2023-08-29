@@ -1,9 +1,11 @@
 package com.orive.InventoryPurchase.Controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +25,12 @@ public class PaddyPurchaseController {
 	private PaddyPurchaseService paddyPurchaseService;
 	
 	@PostMapping(value = "/save")
-	public PaddyPurchase save(@RequestBody PaddyPurchase paddyPurchase)
+	public ResponseEntity<String> save(@RequestBody PaddyPurchase paddyPurchase)
 	{
-		return paddyPurchaseService.save(paddyPurchase);
+		
+		paddyPurchaseService.save(paddyPurchase);
+		return ResponseEntity.ok("PaddyPurchasse saves succesfully");
+		
 	}
 	
 	@GetMapping(value = "/get")
