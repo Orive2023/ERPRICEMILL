@@ -17,18 +17,13 @@ public class Farmer {
 
      private Long farmerId;
 	
-	
 	private String farmerName;
-	
 	
 	private Long paddyPurchaseId;
 	
-    
 	private String address;
-	
-	
+
 	private double paddyBalance;
-	
-	
+
 	private Long mobileNumber;
 }

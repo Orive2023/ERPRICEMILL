@@ -47,7 +47,7 @@ public class PaddyPurchaseService {
 		PaddyPurchase paddyPurchase=paddyPurchaseRepository.findById(paddyPurchaseId).orElse(null);
 		if(paddyPurchase!=null)
 		{
-			Farmer farmer=restTemplate.getForObject("http://localhost:8081/farmer/getbyid/1", Farmer.class);
+			Farmer farmer=restTemplate.getForObject("http://localhost:8081/farmer/getbyid/"+paddyPurchase.getPaddyPurchaseId(), Farmer.class);
 			logger.info("{} "+farmer);
 			paddyPurchase.setFarmer(farmer);
 		}

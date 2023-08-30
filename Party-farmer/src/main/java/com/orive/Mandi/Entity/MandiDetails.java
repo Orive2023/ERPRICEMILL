@@ -1,4 +1,4 @@
-package com.orive.PartyFarmer.Entity;
+package com.orive.Mandi.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,29 +11,38 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
-@Table(name = "farmer")
-public class Farmer {
+@Table(name = "mandi")
+public class MandiDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long farmerId;
+	private Long mandiId;
 	
 	@Column(name = "farmer_name")
-	private String farmerName;
+	private String mandiName;
 	
-	@Column(name = "paddy_purchase_id")
-	private Long paddyPurchaseId;
+	@Column(name = "mandi_owner_name")
+    private String mandiOwnerName;
 	
-    @Column(name = "address")
-	private String address;
+	@Column(name = "dist")
+	private String dist;
 	
-	@Column(name = "paddy_balance")
-	private double paddyBalance;
+	@Column(name = "country")
+	private String country;
+	
+	@Column(name = "state")
+	private String state;
+	
+	@Column(name = "pin_code")
+	private Long pinCode;
+	
 	
 	@Column(name = "mobile_number")
 	private Long mobileNumber;

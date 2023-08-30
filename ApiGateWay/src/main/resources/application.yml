@@ -6,10 +6,10 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: PARTY-FARMER
-        uri: lb://PARTY-FARMER
+      - id: MANDI-SERVICE
+        uri: lb://MANDI-SERVICE
         predicates:
-        - Path=/farmer/**  
+        - Path=/mandi/**  
       - id: PARTY-CUSTOMER
         uri: lb://PARTY-CUSTOMER
         predicates:
