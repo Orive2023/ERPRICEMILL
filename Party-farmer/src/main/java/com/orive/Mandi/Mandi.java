@@ -12,6 +12,7 @@ public class Mandi {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Mandi.class, args);
+		System.out.println("hello ERP User");
 	}
 
 }
