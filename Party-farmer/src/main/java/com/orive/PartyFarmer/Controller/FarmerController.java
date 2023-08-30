@@ -18,6 +18,7 @@ import com.orive.PartyFarmer.Entity.Farmer;
 import com.orive.PartyFarmer.Service.FarmerService;
 
 @RestController
+@RequestMapping(value = "/farmer")
 public class FarmerController {
 
 	@Autowired

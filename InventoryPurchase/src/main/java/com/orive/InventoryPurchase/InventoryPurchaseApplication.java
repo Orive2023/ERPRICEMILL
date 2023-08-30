@@ -16,10 +16,10 @@ public class InventoryPurchaseApplication {
 		SpringApplication.run(InventoryPurchaseApplication.class, args);
 	}
 	
-	@Bean
-	public RestTemplate restTemplate()
-	{
-		return new RestTemplate();
-	}
+//	@Bean
+//	public RestTemplate restTemplate()
+//	{
+//		return new RestTemplate();
+//	}
 
 }

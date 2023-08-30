@@ -25,11 +25,9 @@ public class PaddyPurchaseController {
 	private PaddyPurchaseService paddyPurchaseService;
 	
 	@PostMapping(value = "/save")
-	public ResponseEntity<String> save(@RequestBody PaddyPurchase paddyPurchase)
+	public PaddyPurchase save(@RequestBody PaddyPurchase paddyPurchase)
 	{
-		
-		paddyPurchaseService.save(paddyPurchase);
-		return ResponseEntity.ok("PaddyPurchasse saves succesfully");
+		return paddyPurchaseService.save(paddyPurchase);
 		
 	}
 	
@@ -40,7 +38,7 @@ public class PaddyPurchaseController {
 	}
 	
 	@GetMapping(value = "/getbyid/{paddyPurchaseId}")
-	public Optional<PaddyPurchase> getById(@PathVariable("paddyPurcahseId") Long paddyPurchaseId)
+	public PaddyPurchase getById(@PathVariable("paddyPurchaseId") Long paddyPurchaseId)
 	{
 		return paddyPurchaseService.getById(paddyPurchaseId);
 	}

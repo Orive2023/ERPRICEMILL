@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.orive.InventoryPurchase.Dto.Farmer;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
@@ -19,7 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 import jakarta.persistence.Table;
-
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 
 import lombok.Getter;
@@ -172,7 +170,7 @@ public class PaddyPurchase {
 	@Column(name = "labour_charge")
 	private double labourCharge;
 	
-	@ManyToOne
+    @Transient
 	private Farmer farmer;
 	
 	

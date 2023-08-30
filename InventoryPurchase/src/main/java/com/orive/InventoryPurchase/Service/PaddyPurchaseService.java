@@ -2,16 +2,22 @@ package com.orive.InventoryPurchase.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.orive.InventoryPurchase.Dto.Farmer;
+import com.orive.InventoryPurchase.Controller.PaddyPurchaseController;
+import com.orive.InventoryPurchase.Entity.Farmer;
 import com.orive.InventoryPurchase.Entity.PaddyPurchase;
 import com.orive.InventoryPurchase.Repository.PaddyPurchaseRepository;
 
 @Service
 public class PaddyPurchaseService {
+	
+	private Logger logger=LoggerFactory.getLogger(PaddyPurchaseService.class);
 
 	@Autowired
 	private PaddyPurchaseRepository paddyPurchaseRepository;
@@ -19,7 +25,7 @@ public class PaddyPurchaseService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	public void save(PaddyPurchase paddyPurchase)
+	public PaddyPurchase save(PaddyPurchase paddyPurchase)
 	{
 		paddyPurchase.calculateTotalNoOfPkts();
 		paddyPurchase.calculateNetWeight();
@@ -28,9 +34,7 @@ public class PaddyPurchaseService {
 		paddyPurchase.calculateTotalAmount();
 		paddyPurchase.calculateTotal();
 		paddyPurchase.calculateLabourCharge();
-		 String farmerServiceUrl = "http://localhost:8081/save"; // URL of the Address application
-	        restTemplate.postForObject(farmerServiceUrl, PaddyPurchase.class, Farmer.class);
-
+		return paddyPurchaseRepository.save(paddyPurchase);
 	}
 	
 	public List<PaddyPurchase> get()
@@ -38,10 +42,16 @@ public class PaddyPurchaseService {
 		return paddyPurchaseRepository.findAll();
 	}
 	
-	public Optional<PaddyPurchase> getById(Long paddyPurchaseId)
+	public PaddyPurchase getById(Long paddyPurchaseId)
 	{
-		
-		return paddyPurchaseRepository.findById(paddyPurchaseId);
+		PaddyPurchase paddyPurchase=paddyPurchaseRepository.findById(paddyPurchaseId).orElse(null);
+		if(paddyPurchase!=null)
+		{
+			Farmer farmer=restTemplate.getForObject("http://localhost:8081/farmer/getbyid/1", Farmer.class);
+			logger.info("{} "+farmer);
+			paddyPurchase.setFarmer(farmer);
+		}
+		return paddyPurchase;
 	}
 	
 	public void delete(Long paddyPurchaseId)

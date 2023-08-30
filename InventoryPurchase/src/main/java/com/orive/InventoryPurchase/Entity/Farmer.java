@@ -1,7 +1,7 @@
-package com.orive.InventoryPurchase.Dto;
+package com.orive.InventoryPurchase.Entity;
 
-import java.io.Serializable;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +13,22 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Farmer implements Serializable{
-	private Long farmerId;
+public class Farmer {
+
+     private Long farmerId;
+	
+	
 	private String farmerName;
+	
+	
+	private Long paddyPurchaseId;
+	
+    
 	private String address;
+	
+	
 	private double paddyBalance;
+	
+	
 	private Long mobileNumber;
 }

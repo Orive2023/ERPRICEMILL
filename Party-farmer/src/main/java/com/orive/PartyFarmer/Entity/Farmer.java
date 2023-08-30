@@ -20,13 +20,14 @@ import lombok.Setter;
 public class Farmer {
 
 	@Id
-	@SequenceGenerator(name = "farmer_id_sequence", initialValue = 100000, allocationSize = 1)
-	@GeneratedValue(generator = "farmer_id_sequence", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long farmerId;
 	
 	@Column(name = "farmer_name")
 	private String farmerName;
 	
+	@Column(name = "paddy_purchase_id")
+	private Long paddyPurchaseId;
 	
     @Column(name = "address")
 	private String address;
