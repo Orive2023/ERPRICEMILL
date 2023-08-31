@@ -38,6 +38,15 @@ public class GodownProductDetails {
 	@Column(name = "product_net_quantity")
 	private double productNetQuantity;
 	
+	@Column(name = "pocket_size")
+    private double pocketSize;
+	
+	@Column(name = "no_of_product_pocket")
+	private double noOfProductPocket;
+	
+	@Column(name = "net_quantity")
+	private double netQuantity;
+	
 	@ManyToOne
 	private GowdownDetails gowdownDetails;
 }

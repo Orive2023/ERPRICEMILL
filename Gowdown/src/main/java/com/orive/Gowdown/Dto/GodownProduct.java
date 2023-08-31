@@ -16,11 +16,17 @@ import lombok.ToString;
 @ToString
 public class GodownProduct {
 
-    private Long rawMaterialId;
+    private Long productlId;
 		
-	private String rawMaterialName;
+	private String productName;
 
 	private Date purchaseDate;
 	
-	private double rawMaterialQuantity;
+	private double productQuantity;
+	
+	private double pocketSize;
+	
+	private double noOfProductPocket;
+	
+	private double netQuantity;
 }
