@@ -21,7 +21,15 @@ public class Inventory {
 
     private Long productSummaryId;
 	
+	private String productName;
+	
+	private String productType;
+	
+	private double productQuantity;
+	
 	private Date productManufacturingDate;
 	
 	private Date productDeliveryDate;
+	
+	private Date productPurchaseDate;
 }

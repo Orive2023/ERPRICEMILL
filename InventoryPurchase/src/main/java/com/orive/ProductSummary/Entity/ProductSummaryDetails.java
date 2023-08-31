@@ -27,10 +27,22 @@ public class ProductSummaryDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productSummaryId;
 	
+	@Column(name = "product_name")
+	private String productName;
+	
+	@Column(name = "product_type")
+	private String productType;
+	
+	@Column(name = "product_quantity")
+	private double productQuantity;
+	
 	@Column(name = "product_manufacturing_date")
 	private Date productManufacturingDate;
 	
 	@Column(name = "product_delivery_date")
 	private Date productDeliveryDate;
+	
+	@Column(name = "product_purchase_date")
+	private Date productPurchaseDate;
 	
 }
