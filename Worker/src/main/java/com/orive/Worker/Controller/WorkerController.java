@@ -2,6 +2,8 @@ package com.orive.Worker.Controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ import com.orive.Worker.Service.WorkerService;
 @RestController
 @RequestMapping(value = "/worker")
 public class WorkerController {
+	
+	private Logger logger=LoggerFactory.getLogger(WorkerController.class);
 
 	@Autowired
 	private WorkerService workerService;

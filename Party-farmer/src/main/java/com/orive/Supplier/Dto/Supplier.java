@@ -1,4 +1,4 @@
-package com.orive.Mandi.Dto;
+package com.orive.Supplier.Dto;
 
 
 import lombok.AllArgsConstructor;
@@ -12,13 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Mandi {
+public class Supplier {
 	
-	private Long mandiId;
+	private Long supplierId;
 	
-	private String mandiName;
+	private String supplierName;
 	
-    private String mandiOwnerName;
+    private String supplierOrganisationName;
 	
 	private String dist;
 	

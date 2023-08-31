@@ -1,4 +1,4 @@
-package com.orive.Mandi.Entity;
+package com.orive.Supplier.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,18 +18,18 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "mandi")
-public class MandiDetails {
+@Table(name = "supplier")
+public class SupplierDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long mandiId;
+	private Long supplierId;
 	
-	@Column(name = "farmer_name")
-	private String mandiName;
+	@Column(name = "supplier_name")
+	private String supplierName;
 	
-	@Column(name = "mandi_owner_name")
-    private String mandiOwnerName;
+	@Column(name = "supplier_organisation_name")
+    private String supplierOrganisationName;
 	
 	@Column(name = "dist")
 	private String dist;

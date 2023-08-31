@@ -2,6 +2,8 @@ package com.orive.Transportation.Controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ import com.orive.Transportation.Service.TransportationService;
 @RestController
 @RequestMapping(value = "/transportation")
 public class TransportationController {
+	
+	private Logger logger=LoggerFactory.getLogger(TransportationController.class);
 
 	@Autowired
 	private TransportationService transportationService;

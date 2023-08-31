@@ -1,11 +1,11 @@
-package com.orive.Mandi.Config;
+package com.orive.Supplier.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.modelmapper.ModelMapper;
 
 @Configuration
-public class MandiConfig {
+public class SupplierConfig {
 
 	    @Bean
 	    public ModelMapper modelMapperBean() {

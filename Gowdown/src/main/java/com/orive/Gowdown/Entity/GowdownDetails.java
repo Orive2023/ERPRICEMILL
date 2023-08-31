@@ -1,5 +1,6 @@
 package com.orive.Gowdown.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -34,5 +35,7 @@ public class GowdownDetails {
 	
 	@OneToMany(targetEntity = GodownProductDetails.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "godown_product_fk",referencedColumnName = "godownId")
-	private List<GodownProductDetails> godownProductsDetails;
+	private List<GodownProductDetails> godownProductsDetails=new ArrayList<>();
+	
+	
 }

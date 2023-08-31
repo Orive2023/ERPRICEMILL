@@ -1,18 +1,18 @@
-package com.orive.Mandi;
+package com.orive.ProductSummary;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class Mandi {
+public class ProductSummaryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Mandi.class, args);
-		System.out.println("hello ERP User");
+		SpringApplication.run(ProductSummaryApplication.class, args);
 	}
 
 }
