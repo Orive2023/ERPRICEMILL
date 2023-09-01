@@ -52,6 +52,15 @@ public class SupplierService {
 	                       .map(mandi -> modelMapper.map(mandi, SupplierDTo.class))
 	                       .collect(Collectors.toList());
 	    }
+	 
+	 public List<SupplierDTo> getSupplierByName(String supplierName) {
+		 logger.info("Fetching suppliers by name");
+	        List<SupplierDetails> mandiDetails = supplierRepositoy.findBySupplierName(supplierName);
+
+	        return mandiDetails.stream()
+	                       .map(mandi -> modelMapper.map(mandi, SupplierDTo.class))
+	                       .collect(Collectors.toList());
+	    }
 	
 	 public void deleteSupplier(Long supplierId) {
 		 logger.info("Deleting supplier by ID: {}", supplierId);

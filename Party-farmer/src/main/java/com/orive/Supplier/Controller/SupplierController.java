@@ -48,6 +48,13 @@ public class SupplierController {
 	        List<SupplierDTo> products = supplierService.getSupplierById(supplierId);
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
+	    
+	    @GetMapping("/getname/{supplierName}")
+	    public ResponseEntity<List<SupplierDTo>> getProductsByName(@PathVariable String supplierName) {
+	    	logger.info("Fetching suppliers by Name");
+	        List<SupplierDTo> products = supplierService.getSupplierByName(supplierName);
+	        return new ResponseEntity<>(products, HttpStatus.OK);
+	    }
 
 	    @PutMapping("/update/{supplierId}")
 	    public ResponseEntity<SupplierDTo> updateProduct(
