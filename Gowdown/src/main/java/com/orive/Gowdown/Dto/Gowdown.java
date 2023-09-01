@@ -2,7 +2,7 @@ package com.orive.Gowdown.Dto;
 
 import java.util.List;
 
-import com.orive.Gowdown.Entity.GodownProductDetails;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

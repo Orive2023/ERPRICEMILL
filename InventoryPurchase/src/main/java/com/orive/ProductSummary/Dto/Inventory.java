@@ -1,6 +1,7 @@
 package com.orive.ProductSummary.Dto;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -21,15 +22,15 @@ public class Inventory {
 
     private Long productSummaryId;
 	
-	private String productName;
-	
-	private String productType;
-	
-	private double productQuantity;
-	
 	private Date productManufacturingDate;
 	
 	private Date productDeliveryDate;
 	
 	private Date productPurchaseDate;
+	
+	 private Long godownId;
+		
+     private String godownName;
+		
+     private List<GodownProduct> godownProducts; 
 }

@@ -1,4 +1,4 @@
-package com.orive.Gowdown.Dto;
+package com.orive.ProductSummary.Dto;
 
 import java.util.Date;
 

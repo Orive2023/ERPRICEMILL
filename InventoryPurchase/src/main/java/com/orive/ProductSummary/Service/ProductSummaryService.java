@@ -7,7 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.orive.ProductSummary.Dto.Inventory;
 import com.orive.ProductSummary.Entity.ProductSummaryDetails;
@@ -26,6 +30,9 @@ public class ProductSummaryService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 	
 	 public Inventory createProduct(Inventory inventory) {
 	        ProductSummaryDetails Details = modelMapper.map(inventory, ProductSummaryDetails.class);
@@ -63,4 +70,16 @@ public class ProductSummaryService {
 	        ProductSummaryDetails updated = productSummaryRepository.save(Details);
 	        return modelMapper.map(updated, Inventory.class);
 	    }
+	 
+	 public String processInventoryRequest(Inventory inventory)
+	 {
+		 try {
+			 HttpEntity<Inventory> httpEntity=new HttpEntity<Inventory>(inventory);
+			 ResponseEntity<String> responseEntity=restTemplate.exchange("http://localhost:8089/gowdown/save",HttpMethod.POST, httpEntity, String.class);
+			 return responseEntity.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "failure";
+	 }
 }

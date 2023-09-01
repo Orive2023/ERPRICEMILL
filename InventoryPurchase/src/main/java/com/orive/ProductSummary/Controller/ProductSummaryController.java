@@ -59,4 +59,10 @@ public class ProductSummaryController {
 	        productSummaryService.delete(productSummaryId);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	    }
+	    
+	    @PostMapping(value = "/inventory")
+	    public String inventoryRequest(@RequestBody Inventory inventory)
+	    {
+	    	return productSummaryService.processInventoryRequest(inventory);
+	    }
 }
