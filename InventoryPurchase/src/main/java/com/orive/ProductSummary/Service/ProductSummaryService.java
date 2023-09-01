@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.orive.ProductSummary.Dto.Inventory;
+import com.orive.ProductSummary.Dto.ProductSummary;
 import com.orive.ProductSummary.Entity.ProductSummaryDetails;
 import com.orive.ProductSummary.Repository.ProductSummaryRepository;
 
@@ -34,24 +34,24 @@ public class ProductSummaryService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	 public Inventory createProduct(Inventory inventory) {
+	 public ProductSummary createProduct(ProductSummary inventory) {
 	        ProductSummaryDetails Details = modelMapper.map(inventory, ProductSummaryDetails.class);
 	        ProductSummaryDetails savedProduct = productSummaryRepository.save(Details);
-	        return modelMapper.map(savedProduct, Inventory.class);
+	        return modelMapper.map(savedProduct, ProductSummary.class);
 	    }
 	
-	 public List<Inventory> getAllProducts() {
+	 public List<ProductSummary> getAllProducts() {
 	        List<ProductSummaryDetails> Details = productSummaryRepository.findAll();
 	        return Details.stream()
-	                       .map(mandi -> modelMapper.map(mandi, Inventory.class))
+	                       .map(mandi -> modelMapper.map(mandi, ProductSummary.class))
 	                       .collect(Collectors.toList());
 	    }
 	
-	 public List<Inventory> getProductById(List<Long> productSummaryId) {
+	 public List<ProductSummary> getProductById(List<Long> productSummaryId) {
 	        List<ProductSummaryDetails> Details = productSummaryRepository.findAllById(productSummaryId);
 
 	        return Details.stream()
-	                       .map(mandi -> modelMapper.map(mandi, Inventory.class))
+	                       .map(mandi -> modelMapper.map(mandi, ProductSummary.class))
 	                       .collect(Collectors.toList());
 	    }
 	
@@ -61,20 +61,20 @@ public class ProductSummaryService {
 
 	        productSummaryRepository.delete(existing);
 	    }	
-	 public Inventory update(Long productSummaryId, Inventory updatedDTO) {
+	 public ProductSummary update(Long productSummaryId, ProductSummary updatedDTO) {
 	        ProductSummaryDetails Details = productSummaryRepository.findById(productSummaryId)
 	                                                  .orElseThrow(() -> new EntityNotFoundException("productSummaryId not found"));
 
 	        modelMapper.map(updatedDTO, Details);
 
 	        ProductSummaryDetails updated = productSummaryRepository.save(Details);
-	        return modelMapper.map(updated, Inventory.class);
+	        return modelMapper.map(updated, ProductSummary.class);
 	    }
 	 
-	 public String processInventoryRequest(Inventory inventory)
+	 public String processInventoryRequest(ProductSummary inventory)
 	 {
 		 try {
-			 HttpEntity<Inventory> httpEntity=new HttpEntity<Inventory>(inventory);
+			 HttpEntity<ProductSummary> httpEntity=new HttpEntity<ProductSummary>(inventory);
 			 ResponseEntity<String> responseEntity=restTemplate.exchange("http://localhost:8089/gowdown/save",HttpMethod.POST, httpEntity, String.class);
 			 return responseEntity.getBody();
 		} catch (Exception e) {

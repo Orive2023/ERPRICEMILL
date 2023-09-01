@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orive.ProductSummary.Dto.Inventory;
+import com.orive.ProductSummary.Dto.ProductSummary;
 import com.orive.ProductSummary.Service.ProductSummaryService;
 
 
@@ -30,27 +30,27 @@ public class ProductSummaryController {
 	private ProductSummaryService productSummaryService;
 	
 	 @PostMapping(value = "/save")
-	    public ResponseEntity<Inventory> createProduct(@RequestBody Inventory inventory) {
-	        Inventory created = productSummaryService.createProduct(inventory);
+	    public ResponseEntity<ProductSummary> createProduct(@RequestBody ProductSummary inventory) {
+	        ProductSummary created = productSummaryService.createProduct(inventory);
 	        return new ResponseEntity<>(created, HttpStatus.CREATED);
 	    }
 
 	    @GetMapping(value = "/get")
-	    public ResponseEntity<List<Inventory>> getAllProducts() {
-	        List<Inventory> products = productSummaryService.getAllProducts();
+	    public ResponseEntity<List<ProductSummary>> getAllProducts() {
+	        List<ProductSummary> products = productSummaryService.getAllProducts();
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 
 	    @GetMapping("/get/{productSummaryId}")
-	    public ResponseEntity<List<Inventory>> getProductsByIds(@PathVariable List<Long> productSummaryId) {
-	        List<Inventory> products = productSummaryService.getProductById(productSummaryId);
+	    public ResponseEntity<List<ProductSummary>> getProductsByIds(@PathVariable List<Long> productSummaryId) {
+	        List<ProductSummary> products = productSummaryService.getProductById(productSummaryId);
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 
 	    @PutMapping("/update/{productSummaryId}")
-	    public ResponseEntity<Inventory> updateProduct(
-	            @PathVariable Long productSummaryId, @RequestBody Inventory updatedDTO) {
-	        Inventory updated = productSummaryService.update(productSummaryId, updatedDTO);
+	    public ResponseEntity<ProductSummary> updateProduct(
+	            @PathVariable Long productSummaryId, @RequestBody ProductSummary updatedDTO) {
+	        ProductSummary updated = productSummaryService.update(productSummaryId, updatedDTO);
 	        return new ResponseEntity<>(updated, HttpStatus.OK);
 	    }
 
@@ -61,7 +61,7 @@ public class ProductSummaryController {
 	    }
 	    
 	    @PostMapping(value = "/inventory")
-	    public String inventoryRequest(@RequestBody Inventory inventory)
+	    public String inventoryRequest(@RequestBody ProductSummary inventory)
 	    {
 	    	return productSummaryService.processInventoryRequest(inventory);
 	    }

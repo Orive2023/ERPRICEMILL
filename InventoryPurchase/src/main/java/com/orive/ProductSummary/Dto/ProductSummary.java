@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Inventory {
+public class ProductSummary {
 
     private Long productSummaryId;
 	

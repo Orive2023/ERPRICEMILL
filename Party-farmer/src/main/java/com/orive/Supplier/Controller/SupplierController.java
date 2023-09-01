@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orive.Supplier.Dto.Supplier;
+import com.orive.Supplier.Dto.SupplierDTo;
 import com.orive.Supplier.Service.SupplierService;
 
 @RestController
@@ -29,33 +29,38 @@ public class SupplierController {
 	private SupplierService supplierService;
 	
 	    @PostMapping(value = "/save")
-	    public ResponseEntity<Supplier> createProduct(@RequestBody Supplier mandi) {
-	        Supplier createdMandi = supplierService.createProduct(mandi);
+	    public ResponseEntity<SupplierDTo> createProduct(@RequestBody SupplierDTo mandi) {
+	    	logger.info("Creating a new supplier");
+	        SupplierDTo createdMandi = supplierService.createSupplier(mandi);
 	        return new ResponseEntity<>(createdMandi, HttpStatus.CREATED);
 	    }
 
 	    @GetMapping(value = "/get")
-	    public ResponseEntity<List<Supplier>> getAllProducts() {
-	        List<Supplier> products = supplierService.getAllProducts();
+	    public ResponseEntity<List<SupplierDTo>> getAllProducts() {
+	    	 logger.info("Fetching all suppliers");
+	        List<SupplierDTo> products = supplierService.getAllSupplier();
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 
 	    @GetMapping("/get/{supplierId}")
-	    public ResponseEntity<List<Supplier>> getProductsByIds(@PathVariable List<Long> supplierId) {
-	        List<Supplier> products = supplierService.getMandiById(supplierId);
+	    public ResponseEntity<List<SupplierDTo>> getProductsByIds(@PathVariable List<Long> supplierId) {
+	    	logger.info("Fetching suppliers by IDs");
+	        List<SupplierDTo> products = supplierService.getSupplierById(supplierId);
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 
 	    @PutMapping("/update/{supplierId}")
-	    public ResponseEntity<Supplier> updateProduct(
-	            @PathVariable Long supplierId, @RequestBody Supplier updatedMandiDTO) {
-	        Supplier updatedMandi = supplierService.updateMandi(supplierId, updatedMandiDTO);
+	    public ResponseEntity<SupplierDTo> updateProduct(
+	            @PathVariable Long supplierId, @RequestBody SupplierDTo updatedMandiDTO) {
+	    	logger.info("Updating supplier with ID: {}", supplierId);
+	        SupplierDTo updatedMandi = supplierService.updateSupplier(supplierId, updatedMandiDTO);
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
 
 	    @DeleteMapping("/delete/{supplierId}")
 	    public ResponseEntity<Void> deleteProduct(@PathVariable Long supplierId) {
-	        supplierService.deleteMandi(supplierId);
+	    	logger.info("Deleting supplier with ID: {}", supplierId);
+	        supplierService.deleteSupplier(supplierId);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	    }
 }

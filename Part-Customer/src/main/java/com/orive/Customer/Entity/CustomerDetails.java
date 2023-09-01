@@ -1,4 +1,6 @@
-package com.orive.Supplier.Entity;
+package com.orive.Customer.Entity;
+
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,26 +10,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
-@Table(name = "supplierdetails")
-public class SupplierDetails {
+@Table(name = "customerdeatils")
+public class CustomerDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long supplierId;
+	private Long customerId;
 	
 	@Column(name = "supplier_name")
-	private String supplierName;
-	
+	private String customerName;
 	
 	@Column(name = "address")
 	private String address;
@@ -58,4 +58,8 @@ public class SupplierDetails {
 	
 	@Column(name = "city")
 	private String city;
+
+	@Column(name = "commercial_registration_number")
+	private String commercialRegistrationNumber;
+	
 }
