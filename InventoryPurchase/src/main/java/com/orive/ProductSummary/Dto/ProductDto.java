@@ -1,7 +1,5 @@
 package com.orive.ProductSummary.Dto;
 
-import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -18,19 +16,27 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductSummary {
+public class ProductDto {
 
-    private Long productSummaryId;
+	private Long productId;
 	
-	private Date productManufacturingDate;
+	private String productName;
 	
-	private Date productDeliveryDate;
+	private String categoryName;
 	
-	private Date productPurchaseDate;
+	private double salePrice;
 	
-	 private Long godownId;
-		
-     private String godownName;
-		
-     private List<GodownProduct> godownProducts; 
+	private double costPrice;
+	
+	private String supplierName;
+	
+	private String sn;
+	
+	private String model;
+	
+	private String unitName;;
+	
+	private String productDetails;
+	
+	private String productVatPercentage;
 }

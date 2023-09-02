@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.orive.Purchase.Entity.ProductDetails;
+import com.orive.Purchase.Entity.PurchaseProductDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -49,5 +49,5 @@ public class PurchaseDto {
 	
 	private String paymentType;
 	
-	private List<ProductDto> productDto;
+	private List<PurchaseProductDto> productDto;
 }

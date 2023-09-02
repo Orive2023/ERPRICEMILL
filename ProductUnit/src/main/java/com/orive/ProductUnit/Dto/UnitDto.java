@@ -1,14 +1,10 @@
-package com.orive.ProductSummary.Entity;
+package com.orive.ProductUnit.Dto;
 
-import java.util.Date;
-import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,15 +17,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
-@Table(name = "productSummary")
-public class ProductSummaryDetails {
+public class UnitDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productSummaryId;
+	private Long unitId;
 	
-	@OneToMany
-	private List<GowdownDetails> gowdownDetails;
+	private String unitName;
+	
+	private String status;
 	
 }

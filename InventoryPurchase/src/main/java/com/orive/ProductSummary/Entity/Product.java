@@ -1,14 +1,13 @@
 package com.orive.ProductSummary.Entity;
 
-import java.util.Date;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +21,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "godownproduct")
-public class GodownProductDetails {
+@Table(name = "product")
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,21 +31,30 @@ public class GodownProductDetails {
 	@Column(name = "product_name")
 	private String productName;
 	
-	@Column(name = "purchase_date")
-	private Date purchaseDate;
+	@Column(name = "category_name")
+	private String categoryName;
 	
-	@Column(name = "product_net_quantity")
-	private double productNetQuantity;
+	@Column(name = "sale_price")
+	private double salePrice;
 	
-	@Column(name = "pocket_size")
-    private double pocketSize;
+	@Column(name = "cost_price")
+	private double costPrice;
 	
-	@Column(name = "no_of_product_pocket")
-	private double noOfProductPocket;
+	@Column(name = "supplier_name")
+	private String supplierName;
 	
-	@Column(name = "net_quantity")
-	private double netQuantity;
+	@Column(name = "sn")
+	private String sn;
 	
-	@ManyToOne
-	private GowdownDetails gowdownDetails;
+	@Column(name = "model")
+	private String model;
+	
+	@Column(name = "unit_name")
+	private String unitName;;
+	
+	@Column(name = "product_details")
+	private String productDetails;
+	
+	@Column(name = "product_vat_percentage")
+	private String productVatPercentage;
 }

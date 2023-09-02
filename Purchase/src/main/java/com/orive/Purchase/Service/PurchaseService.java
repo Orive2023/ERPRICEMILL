@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orive.Purchase.Dto.ProductDto;
+import com.orive.Purchase.Dto.PurchaseProductDto;
 import com.orive.Purchase.Dto.PurchaseDto;
-import com.orive.Purchase.Entity.ProductDetails;
+import com.orive.Purchase.Entity.PurchaseProductDetails;
 import com.orive.Purchase.Entity.PurchaseDetails;
 import com.orive.Purchase.Repository.PurchaseRepository;
 
@@ -32,8 +32,8 @@ public class PurchaseService {
 	public PurchaseDto createPurchase(PurchaseDto purchaseDto) {
 	    PurchaseDetails gowdownDetails = modelMapper.map(purchaseDto, PurchaseDetails.class);
 
-	    for (ProductDto godownProductDto : purchaseDto.getProductDto()) {
-	        ProductDetails godownProductDetails = modelMapper.map(godownProductDto, ProductDetails.class);
+	    for (PurchaseProductDto godownProductDto : purchaseDto.getProductDto()) {
+	        PurchaseProductDetails godownProductDetails = modelMapper.map(godownProductDto, PurchaseProductDetails.class);
 	        godownProductDetails.setPurchaseDetails(gowdownDetails);
 	        gowdownDetails.getProductDetails().add(godownProductDetails);
 	    }
@@ -73,8 +73,8 @@ public class PurchaseService {
 	        
 	        // Update addresses
 	        Entity.getProductDetails().clear();
-	        for (ProductDto DTO : updatedGodownDTO.getProductDto()) {
-	            ProductDetails productEntity = modelMapper.map(DTO, ProductDetails.class);
+	        for (PurchaseProductDto DTO : updatedGodownDTO.getProductDto()) {
+	            PurchaseProductDetails productEntity = modelMapper.map(DTO, PurchaseProductDetails.class);
 	            productEntity.setPurchaseDetails(Entity);
 	            Entity.getProductDetails().add(productEntity);
 	        }

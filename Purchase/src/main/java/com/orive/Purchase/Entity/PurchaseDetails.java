@@ -68,9 +68,9 @@ public class PurchaseDetails {
 	@Column(name = "payment_type")
 	private String paymentType;
 	
-	@OneToMany(targetEntity = ProductDetails.class,cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = PurchaseProductDetails.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "purchase_product_fk",referencedColumnName = "purchaseId")
-	private List<ProductDetails> productDetails=new ArrayList<>();
+	private List<PurchaseProductDetails> productDetails=new ArrayList<>();
 	
 	
 }
