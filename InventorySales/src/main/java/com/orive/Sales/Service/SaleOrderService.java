@@ -27,7 +27,7 @@ public class SaleOrderService {
 	
 	// Create operation
     public Sales createSaleOrder(Sales salesDto) {
-    	logger.info("");
+    	logger.info("Sales Succesful register");
         SaleOrder saleOrder = modelMapper.map(salesDto, SaleOrder.class);
         SaleOrder savedSaleOrder = saleOrderRepository.save(saleOrder);
         return modelMapper.map(savedSaleOrder, Sales.class);
