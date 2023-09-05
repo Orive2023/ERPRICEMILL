@@ -1,4 +1,4 @@
-package com.orive.Worker.Entity;
+package com.orive.Hr.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,30 +18,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "worker")
-public class WorkerDetails {
+@Table(name = "designationdetails")
+public class DesignationDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long workerId;
+	private Long designationId;
 	
-	@Column(name = "worker_name")
-	private String workerName;
+	@Column(name = "designationName")
+	private String designationName;
 	
-	@Column(name = "worker_age")
-	private int workerAge;
-	
-	@Column(name = "worker_mobile_number")
-	private Long workerMobileNumber;
-	
-	@Column(name = "worker_gender")
-	private String workerGender;
-	
-	@Column(name = "address")
-	private String address;
-	
-	@Column(name = "worker_salery")
-	private double workerSalery;
-	
-	
+	@Column(name = "details")
+	private String details;
 }

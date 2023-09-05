@@ -1,11 +1,11 @@
-package com.orive.Worker.Config;
+package com.orive.Hr.Config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class WorkerConfig {
+public class EmployeeDetailsConfig {
 
 	@Bean
 	public ModelMapper modelMapper()

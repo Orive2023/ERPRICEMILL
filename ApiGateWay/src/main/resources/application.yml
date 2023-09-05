@@ -6,24 +6,24 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: MANDI-SERVICE
-        uri: lb://MANDI-SERVICE
+      - id: SUPPLIER-SERVICE
+        uri: lb://SUPPLIER-SERVICE
         predicates:
-        - Path=/mandi/**  
-      - id: PARTY-CUSTOMER
-        uri: lb://PARTY-CUSTOMER
+        - Path=/supplier/**  
+      - id: CUSTOMER-SERVICE
+        uri: lb://CUSTOMER-SERVICE
         predicates:
         - Path=/customer/** 
-      - id: INVENTORY-SALES
-        uri: lb://INVENTORY-SALES
+      - id: TRANSPORTATION-SERVICE
+        uri: lb://TRANSPORTATION-SERVICE
         predicates:
-        - Path=/order/**
-      - id: INVENTORY-PURCHASE
-        uri: lb://INVENTORY-PURCHASE
+        - Path=/transportation/**
+      - id: PURCHASE-SERVICE
+        uri: lb://PURCHASE-SERVICE
         predicates:
         - Path=/purchase/** 
-      - id: INVENTORY-STOCK
-        uri: lb://INVENTORY-STOCK
+      - id: PRODUCTUNIT-SERVICE
+        uri: lb://PRODUCTUNIT-SERVICE
         predicates:
-        - Path=/**   
+        - Path=/unit/**   
           

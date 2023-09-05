@@ -1,4 +1,4 @@
-package com.orive.Worker;
+package com.orive.Hr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class WorkerApplication {
+public class HrApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorkerApplication.class, args);
+		SpringApplication.run(HrApplication.class, args);
 	}
 
 }
