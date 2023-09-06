@@ -25,5 +25,24 @@ spring:
       - id: PRODUCTUNIT-SERVICE
         uri: lb://PRODUCTUNIT-SERVICE
         predicates:
-        - Path=/unit/**   
-          
+        - Path=/unit/**
+      - id: TRANSPORTATION-SERVICE
+        uri: lb://TRANSPORTATION-SERVICE
+        predicates:
+        - Path=/transportation/**
+      - id: SALES-SERVICE
+        uri: lb://SALES-SERVICE
+        predicates:
+        - Path=/sales/**
+      - id: PRODUCT-SUMMARY
+        uri: lb://PRODUCT-SUMMARY
+        predicates:
+        - Path=/productcontroller/**     
+      - id: PRODUCT-SUMMARY
+        uri: lb://PRODUCT-SUMMARY
+        predicates:
+        - Path=/productcontroller/**     
+      - id: PRODUCTCATEGORY-SERVICE
+        uri: lb://PRODUCTCATEGORY-SERVICE
+        predicates:
+        - Path=/category/**        
