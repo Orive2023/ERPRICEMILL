@@ -1,4 +1,4 @@
-package com.orive.PurchaseSummary.Dto;
+package com.orive.Stock.Entity;
 
 import java.time.LocalDate;
 import java.util.Date;

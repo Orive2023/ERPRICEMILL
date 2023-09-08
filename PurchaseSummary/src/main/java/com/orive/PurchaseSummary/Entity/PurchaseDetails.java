@@ -37,6 +37,9 @@ public class PurchaseDetails {
 	@Column(name = "chalan_number")
 	private String chalanNumber;
 	
+	@Column(name = "stock_id")
+	private Long stockId;
+	
 	@Column(name = "purchase_date")
 	private LocalDate purchaseDate;
 	

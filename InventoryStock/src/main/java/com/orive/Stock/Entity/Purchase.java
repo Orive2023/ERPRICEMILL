@@ -1,4 +1,4 @@
-package com.orive.PurchaseSummary.Dto;
+package com.orive.Stock.Entity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,9 +26,9 @@ public class Purchase {
 	
 	private String supplierName;
 	
-	private String chalanNumber;
-	
 	private Long stockId;
+	
+	private String chalanNumber;
 	
 	private LocalDate purchaseDate;
 	
