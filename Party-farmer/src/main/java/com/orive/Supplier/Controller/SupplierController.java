@@ -1,12 +1,14 @@
 package com.orive.Supplier.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +22,8 @@ import com.orive.Supplier.Dto.SupplierDTo;
 import com.orive.Supplier.Service.SupplierService;
 
 @RestController
-@RequestMapping(value = "/supplier")
+@RequestMapping(value = "/api/suppliers")
+@CrossOrigin("http://localhost:3000")
 public class SupplierController {
 	
 	private Logger logger=LoggerFactory.getLogger(SupplierController.class);
@@ -28,46 +31,86 @@ public class SupplierController {
 	@Autowired
 	private SupplierService supplierService;
 	
-	    @PostMapping(value = "/save")
-	    public ResponseEntity<SupplierDTo> createProduct(@RequestBody SupplierDTo mandi) {
-	    	logger.info("Creating a new supplier");
-	        SupplierDTo createdMandi = supplierService.createSupplier(mandi);
-	        return new ResponseEntity<>(createdMandi, HttpStatus.CREATED);
-	    }
+	// Create a new supplier
+    @PostMapping("/create/supplier")
+    public ResponseEntity<SupplierDTo> createSupplier(@RequestBody SupplierDTo supplierDTO) {
+        SupplierDTo createdSupplier = supplierService.createSupplier(supplierDTO);
+        logger.info("Created supplier with name: {}", createdSupplier.getBussinessOwnerName());
+        return new ResponseEntity<>(createdSupplier, HttpStatus.CREATED);
+    }
 
-	    @GetMapping(value = "/get")
-	    public ResponseEntity<List<SupplierDTo>> getAllProducts() {
-	    	 logger.info("Fetching all suppliers");
-	        List<SupplierDTo> products = supplierService.getAllSupplier();
-	        return new ResponseEntity<>(products, HttpStatus.OK);
-	    }
+    // Get all suppliers
+    @GetMapping("/get/suppliers")
+    public ResponseEntity<List<SupplierDTo>> getAllSuppliers() {
+        List<SupplierDTo> suppliers = supplierService.getAllSuppliers();
+        logger.info("Retrieved {} suppliers from the database", suppliers.size());
+        return new ResponseEntity<>(suppliers, HttpStatus.OK);
+    }
 
-	    @GetMapping("/get/{supplierId}")
-	    public ResponseEntity<List<SupplierDTo>> getProductsByIds(@PathVariable List<Long> supplierId) {
-	    	logger.info("Fetching suppliers by IDs");
-	        List<SupplierDTo> products = supplierService.getSupplierById(supplierId);
-	        return new ResponseEntity<>(products, HttpStatus.OK);
-	    }
+    // Get supplier by ID
+    @GetMapping("/get/{supplierId}")
+    public ResponseEntity<SupplierDTo> getSupplierById(@PathVariable Long supplierId) {
+        Optional<SupplierDTo> supplier = supplierService.getSupplierById(supplierId);
+        if (supplier.isPresent()) {
+            logger.info("Retrieved supplier with ID: {}", supplierId);
+            return new ResponseEntity<>(supplier.get(), HttpStatus.OK);
+        } else {
+            logger.warn("Supplier with ID {} not found", supplierId);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Update supplier by ID
+    @PutMapping("/update/{supplierId}")
+    public ResponseEntity<SupplierDTo> updateSupplier(@PathVariable Long supplierId, @RequestBody SupplierDTo updatedSupplierDTO) {
+        SupplierDTo updatedSupplier = supplierService.updateSupplier(supplierId, updatedSupplierDTO);
+        if (updatedSupplier != null) {
+            logger.info("Updated supplier with ID: {}", supplierId);
+            return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
+        } else {
+            logger.warn("Supplier with ID {} not found for update", supplierId);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    // Update supplier by ID
+    @PutMapping("/update/{businessOwnerName}")
+    public ResponseEntity<SupplierDTo> updateSupplierName(@PathVariable String businessOwnerName, @RequestBody SupplierDTo updatedSupplierDTO) {
+        SupplierDTo updatedSupplier = supplierService.updateSupplierName(businessOwnerName, updatedSupplierDTO);
+        if (updatedSupplier != null) {
+            logger.info("Updated supplier with name: {}", businessOwnerName);
+            return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
+        } else {
+            logger.warn("Supplier with name {} not found for update", businessOwnerName);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    // Delete supplier by ID
+    @DeleteMapping("/delete/{supplierId}")
+    public ResponseEntity<Void> deleteSupplier(@PathVariable Long supplierId) {
+        supplierService.deleteSupplier(supplierId);
+        logger.info("Deleted supplier with ID: {}", supplierId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    // Get suppliers by business owner name
+    @GetMapping("/byBusinessOwner/{businessOwnerName}")
+    public ResponseEntity<List<SupplierDTo>> getSuppliersByBusinessOwnerName(@PathVariable String businessOwnerName) {
+        List<SupplierDTo> suppliers = supplierService.getSuppliersByBusinessOwnerName(businessOwnerName);
+        if (!suppliers.isEmpty()) {
+            logger.info("Retrieved {} suppliers with business owner name: {}", suppliers.size(), businessOwnerName);
+            return new ResponseEntity<>(suppliers, HttpStatus.OK);
+        } else {
+            logger.warn("No suppliers found with business owner name: {}", businessOwnerName);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 	    
-	    @GetMapping("/getname/{supplierName}")
-	    public ResponseEntity<List<SupplierDTo>> getProductsByName(@PathVariable String supplierName) {
-	    	logger.info("Fetching suppliers by Name");
-	        List<SupplierDTo> products = supplierService.getSupplierByName(supplierName);
-	        return new ResponseEntity<>(products, HttpStatus.OK);
-	    }
-
-	    @PutMapping("/update/{supplierId}")
-	    public ResponseEntity<SupplierDTo> updateProduct(
-	            @PathVariable Long supplierId, @RequestBody SupplierDTo updatedMandiDTO) {
-	    	logger.info("Updating supplier with ID: {}", supplierId);
-	        SupplierDTo updatedMandi = supplierService.updateSupplier(supplierId, updatedMandiDTO);
-	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
-	    }
-
-	    @DeleteMapping("/delete/{supplierId}")
-	    public ResponseEntity<Void> deleteProduct(@PathVariable Long supplierId) {
-	    	logger.info("Deleting supplier with ID: {}", supplierId);
-	        supplierService.deleteSupplier(supplierId);
-	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    @GetMapping("/count/supplier")
+	    public long countSupplier()
+	    {
+	    	return supplierService.countSupplier();
 	    }
 }
