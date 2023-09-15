@@ -17,6 +17,7 @@ import com.orive.Customer.Repository.CustomerRepository;
 
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.ws.rs.NotFoundException;
 
 
 @Service
@@ -56,6 +57,20 @@ public class CustomerService {
                        .map(mandi -> modelMapper.map(mandi, CustomerDto.class))
                        .collect(Collectors.toList());
     }
+    
+    public List<CustomerDto> getByCustomerName(String customerName) {
+        logger.info("Fetching customers by business owner name: {}", customerName);
+        Optional<CustomerDetails> customers = customerRepository.findByCustomerName(customerName);
+
+        if (!customers.isEmpty()) {
+            return customers.stream()
+                    .map(customer -> modelMapper.map(customer, CustomerDto.class))
+                    .collect(Collectors.toList());
+        } else {
+            logger.info("No customers found with business owner name: {}", customerName);
+            throw new NotFoundException("No customers found with business owner name: " + customerName);
+        }
+    }
 
     //delete customer by customerId
     public void deleteCustomer(Long customerId) {
@@ -80,9 +95,9 @@ public class CustomerService {
     
     //update customer by name
   //update list by name
-    public CustomerDto updateCustomer(String bussinessOwnerName, CustomerDto updatedMandiDTO) {
-   	 logger.info("Updating supplier with name: {}", bussinessOwnerName);
-           CustomerDetails mandiDetails = customerRepository.findByBussinessOwnerName(bussinessOwnerName)
+    public CustomerDto updateCustomer(String customerName, CustomerDto updatedMandiDTO) {
+   	 logger.info("Updating supplier with name: {}", customerName);
+           CustomerDetails mandiDetails = customerRepository.findByCustomerName(customerName)
                                                      .orElseThrow(() -> new EntityNotFoundException("customerName not found"));
 
            modelMapper.map(updatedMandiDTO, mandiDetails);

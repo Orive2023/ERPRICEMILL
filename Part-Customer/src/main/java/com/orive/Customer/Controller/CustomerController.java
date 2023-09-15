@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orive.Customer.Dto.CustomerDto;
 import com.orive.Customer.Service.CustomerService;
+
+import jakarta.ws.rs.NotFoundException;
 
 
 @RestController
@@ -50,6 +53,17 @@ public class CustomerController {
 	        List<CustomerDto> products = customerService.getCustomerById(customerId);
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
+	    
+	    @GetMapping("/customerName")
+	    public ResponseEntity<List<CustomerDto>> getCustomersByBusinessOwnerName(
+	            @RequestParam("customerName") String customerName) {
+	        List<CustomerDto> customers = customerService.getByCustomerName(customerName);
+	        if (!customers.isEmpty()) {
+	            return new ResponseEntity<>(customers, HttpStatus.OK);
+	        } else {
+	            throw new NotFoundException("No customers found with business owner name: " + customerName);
+	        }
+	    }
 
 	    @PutMapping("/update/{customerId}")
 	    public ResponseEntity<CustomerDto> updateProduct(
@@ -59,11 +73,11 @@ public class CustomerController {
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
 	    
-	    @PutMapping("/update/{bussinessOwnerName}")
+	    @PutMapping("/update/{customerName}")
 	    public ResponseEntity<CustomerDto> updateProduct(
-	            @PathVariable String bussinessOwnerName, @RequestBody CustomerDto updatedMandiDTO) {
-	    	logger.info("Updating customer with name: {}", bussinessOwnerName);
-	        CustomerDto updatedMandi = customerService.updateCustomer(bussinessOwnerName, updatedMandiDTO);
+	            @PathVariable String customerName, @RequestBody CustomerDto updatedMandiDTO) {
+	    	logger.info("Updating customer with name: {}", customerName);
+	        CustomerDto updatedMandi = customerService.updateCustomer(customerName, updatedMandiDTO);
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
 

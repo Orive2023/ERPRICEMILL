@@ -19,7 +19,7 @@ public class CustomerDto {
 
 	private Long customerId;
 	private String businessName;
-	private String bussinessOwnerName;
+	private String customerName;
 	private String emailAddress;
 	private String gender;
 	private String webUrl;

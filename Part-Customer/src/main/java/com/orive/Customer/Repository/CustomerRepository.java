@@ -8,5 +8,5 @@ import com.orive.Customer.Entity.CustomerDetails;
 
 public interface CustomerRepository extends JpaRepository<CustomerDetails, Long>{
 
-	Optional<CustomerDetails> findByBussinessOwnerName(String businessOwnerName);
+	Optional<CustomerDetails> findByCustomerName(String customerName);
 }

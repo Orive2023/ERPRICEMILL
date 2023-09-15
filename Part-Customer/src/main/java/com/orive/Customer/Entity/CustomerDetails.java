@@ -30,7 +30,7 @@ public class CustomerDetails {
 	private String businessName;
 	
 	@Column(name = "bussiness_owner_name")
-	private String bussinessOwnerName;
+	private String customerName;
 	
 	@Column(name = "email_address")
 	private String emailAddress;
