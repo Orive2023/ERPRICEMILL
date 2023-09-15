@@ -22,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "supplier")
-public class CustomerDetails {
+public class SupplierDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +31,8 @@ public class CustomerDetails {
 	@Column(name = "business_name")
 	private String businessName;
 	
-	@Column(name = "bussiness_owner_name")
-	private String bussinessOwnerName;
+	@Column(name = "supplier_name")
+	private String supplierName;
 	
 	@Column(name = "email_address")
 	private String emailAddress;
@@ -88,8 +88,8 @@ public class CustomerDetails {
     @Column(name = "account_branch")
     private String accountBranch;
     
-    @Column(name = "bank_account_name")
-    private Double bankAccountName;
+    @Column(name = "bank_account_number")
+    private Double bankAccountNumber;
     
     @Column(name = "bank_account_type")
     private String bankAccountType;

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orive.Supplier.Dto.CustomerDto;
+import com.orive.Supplier.Dto.SupplierDto;
 import com.orive.Supplier.Service.SupplierService;
 
 @RestController
@@ -33,24 +33,24 @@ public class SupplierController {
 	
 	// Create a new supplier
     @PostMapping("/create/supplier")
-    public ResponseEntity<CustomerDto> createSupplier(@RequestBody CustomerDto supplierDTO) {
-        CustomerDto createdSupplier = supplierService.createSupplier(supplierDTO);
-        logger.info("Created supplier with name: {}", createdSupplier.getBussinessOwnerName());
+    public ResponseEntity<SupplierDto> createSupplier(@RequestBody SupplierDto supplierDTO) {
+        SupplierDto createdSupplier = supplierService.createSupplier(supplierDTO);
+        logger.info("Created supplier with name: {}", createdSupplier.getSupplierName());
         return new ResponseEntity<>(createdSupplier, HttpStatus.CREATED);
     }
 
     // Get all suppliers
     @GetMapping("/get/suppliers")
-    public ResponseEntity<List<CustomerDto>> getAllSuppliers() {
-        List<CustomerDto> suppliers = supplierService.getAllSuppliers();
+    public ResponseEntity<List<SupplierDto>> getAllSuppliers() {
+        List<SupplierDto> suppliers = supplierService.getAllSuppliers();
         logger.info("Retrieved {} suppliers from the database", suppliers.size());
         return new ResponseEntity<>(suppliers, HttpStatus.OK);
     }
 
     // Get supplier by ID
     @GetMapping("/get/{supplierId}")
-    public ResponseEntity<CustomerDto> getSupplierById(@PathVariable Long supplierId) {
-        Optional<CustomerDto> supplier = supplierService.getSupplierById(supplierId);
+    public ResponseEntity<SupplierDto> getSupplierById(@PathVariable Long supplierId) {
+        Optional<SupplierDto> supplier = supplierService.getSupplierById(supplierId);
         if (supplier.isPresent()) {
             logger.info("Retrieved supplier with ID: {}", supplierId);
             return new ResponseEntity<>(supplier.get(), HttpStatus.OK);
@@ -62,8 +62,8 @@ public class SupplierController {
 
     // Update supplier by ID
     @PutMapping("/update/{supplierId}")
-    public ResponseEntity<CustomerDto> updateSupplier(@PathVariable Long supplierId, @RequestBody CustomerDto updatedSupplierDTO) {
-        CustomerDto updatedSupplier = supplierService.updateSupplier(supplierId, updatedSupplierDTO);
+    public ResponseEntity<SupplierDto> updateSupplier(@PathVariable Long supplierId, @RequestBody SupplierDto updatedSupplierDTO) {
+        SupplierDto updatedSupplier = supplierService.updateSupplier(supplierId, updatedSupplierDTO);
         if (updatedSupplier != null) {
             logger.info("Updated supplier with ID: {}", supplierId);
             return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
@@ -74,14 +74,14 @@ public class SupplierController {
     }
     
     // Update supplier by ID
-    @PutMapping("/update/{businessOwnerName}")
-    public ResponseEntity<CustomerDto> updateSupplierName(@PathVariable String businessOwnerName, @RequestBody CustomerDto updatedSupplierDTO) {
-        CustomerDto updatedSupplier = supplierService.updateSupplierName(businessOwnerName, updatedSupplierDTO);
+    @PutMapping("/update/{supplierName}")
+    public ResponseEntity<SupplierDto> updateSupplierName(@PathVariable String supplierName, @RequestBody SupplierDto updatedSupplierDTO) {
+        SupplierDto updatedSupplier = supplierService.updateSupplierName(supplierName, updatedSupplierDTO);
         if (updatedSupplier != null) {
-            logger.info("Updated supplier with name: {}", businessOwnerName);
+            logger.info("Updated supplier with name: {}", supplierName);
             return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
         } else {
-            logger.warn("Supplier with name {} not found for update", businessOwnerName);
+            logger.warn("Supplier with name {} not found for update", supplierName);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -96,14 +96,14 @@ public class SupplierController {
     }
 
     // Get suppliers by business owner name
-    @GetMapping("/byBusinessOwner/{businessOwnerName}")
-    public ResponseEntity<List<CustomerDto>> getSuppliersByBusinessOwnerName(@PathVariable String businessOwnerName) {
-        List<CustomerDto> suppliers = supplierService.getSuppliersByBusinessOwnerName(businessOwnerName);
+    @GetMapping("/byBusinessOwner/{supplierName}")
+    public ResponseEntity<List<SupplierDto>> getSuppliersByBusinessOwnerName(@PathVariable String supplierName) {
+        List<SupplierDto> suppliers = supplierService.getSuppliersBySuppliername(supplierName);
         if (!suppliers.isEmpty()) {
-            logger.info("Retrieved {} suppliers with business owner name: {}", suppliers.size(), businessOwnerName);
+            logger.info("Retrieved {} suppliers with business owner name: {}", suppliers.size(), supplierName);
             return new ResponseEntity<>(suppliers, HttpStatus.OK);
         } else {
-            logger.warn("No suppliers found with business owner name: {}", businessOwnerName);
+            logger.warn("No suppliers found with business owner name: {}", supplierName);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

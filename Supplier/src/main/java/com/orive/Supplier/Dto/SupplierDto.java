@@ -13,11 +13,11 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDto {
+public class SupplierDto {
 	
 	private Long supplierId;
 	private String businessName;
-	private String bussinessOwnerName;
+	private String supplierName;
 	private String emailAddress;
 	private String gender;
 	private String webUrl;
@@ -36,7 +36,7 @@ public class CustomerDto {
 	private String accountHolderName;
     private String bankName;
     private String accountBranch;
-    private Double bankAccountName;
+    private Double bankAccountNumber;
     private String bankAccountType;
     private String swiftOrBicCode;
     private String bankRoutingOrSortCode;
