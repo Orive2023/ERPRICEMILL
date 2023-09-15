@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SupplierDTo {
+public class CustomerDto {
 	
 	private Long supplierId;
 	private String businessName;

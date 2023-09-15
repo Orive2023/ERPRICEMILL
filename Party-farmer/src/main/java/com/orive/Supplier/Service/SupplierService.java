@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orive.Supplier.Dto.SupplierDTo;
-import com.orive.Supplier.Entity.SupplierDetails;
+import com.orive.Supplier.Dto.CustomerDto;
+import com.orive.Supplier.Entity.CustomerDetails;
 import com.orive.Supplier.Repository.SupplierRepositoy;
 
 @Service
@@ -29,16 +29,16 @@ public class SupplierService {
 	
 
     // Create
-    public SupplierDTo createSupplier(SupplierDTo supplierDTO) {
-        SupplierDetails supplierEntity = convertToEntity(supplierDTO);
-        SupplierDetails savedSupplier = supplierRepository.save(supplierEntity);
+    public CustomerDto createSupplier(CustomerDto supplierDTO) {
+        CustomerDetails supplierEntity = convertToEntity(supplierDTO);
+        CustomerDetails savedSupplier = supplierRepository.save(supplierEntity);
         logger.info("Created supplier with ID: {}", savedSupplier.getSupplierId());
         return convertToDTO(savedSupplier);
     }
 
     // Read
-    public List<SupplierDTo> getAllSuppliers() {
-        List<SupplierDetails> suppliers = supplierRepository.findAll();
+    public List<CustomerDto> getAllSuppliers() {
+        List<CustomerDetails> suppliers = supplierRepository.findAll();
         logger.info("Retrieved {} suppliers from the database", suppliers.size());
         return suppliers.stream()
                 .map(this::convertToDTO)
@@ -46,8 +46,8 @@ public class SupplierService {
     }
     
     //get by supplierId
-    public Optional<SupplierDTo> getSupplierById(Long supplierId) {
-        Optional<SupplierDetails> supplier = supplierRepository.findById(supplierId);
+    public Optional<CustomerDto> getSupplierById(Long supplierId) {
+        Optional<CustomerDetails> supplier = supplierRepository.findById(supplierId);
         if (supplier.isPresent()) {
             return Optional.of(convertToDTO(supplier.get()));
         } else {
@@ -58,11 +58,11 @@ public class SupplierService {
     
     
  // Fetch suppliers by businessOwnerName
-    public List<SupplierDTo> getSuppliersByBusinessOwnerName(String businessOwnerName) {
-        Optional<SupplierDetails> supplierOptional = supplierRepository.findByBussinessOwnerName(businessOwnerName);
+    public List<CustomerDto> getSuppliersByBusinessOwnerName(String businessOwnerName) {
+        Optional<CustomerDetails> supplierOptional = supplierRepository.findByBussinessOwnerName(businessOwnerName);
         if (supplierOptional.isPresent()) {
-            SupplierDetails supplier = supplierOptional.get();
-            List<SupplierDTo> suppliers = supplierRepository.findByBussinessOwnerName(businessOwnerName)
+            CustomerDetails supplier = supplierOptional.get();
+            List<CustomerDto> suppliers = supplierRepository.findByBussinessOwnerName(businessOwnerName)
                     .stream()
                     .map(this::convertToDTO)
                     .collect(Collectors.toList());
@@ -75,12 +75,12 @@ public class SupplierService {
     }
 
     // Update list by id
-    public SupplierDTo updateSupplier(Long supplierId, SupplierDTo updatedSupplierDTO) {
-        Optional<SupplierDetails> existingSupplierOptional = supplierRepository.findById(supplierId);
+    public CustomerDto updateSupplier(Long supplierId, CustomerDto updatedSupplierDTO) {
+        Optional<CustomerDetails> existingSupplierOptional = supplierRepository.findById(supplierId);
         if (existingSupplierOptional.isPresent()) {
-            SupplierDetails existingSupplier = existingSupplierOptional.get();
+            CustomerDetails existingSupplier = existingSupplierOptional.get();
             modelMapper.map(updatedSupplierDTO, existingSupplier);
-            SupplierDetails updatedSupplier = supplierRepository.save(existingSupplier);
+            CustomerDetails updatedSupplier = supplierRepository.save(existingSupplier);
             logger.info("Updated supplier with ID: {}", updatedSupplier.getSupplierId());
             return convertToDTO(updatedSupplier);
         } else {
@@ -90,12 +90,12 @@ public class SupplierService {
     }
     
     //update list by name
-    public SupplierDTo updateSupplierName(String businessOwnerName, SupplierDTo updatedSupplierDTO) {
-        Optional<SupplierDetails> existingSupplierOptional = supplierRepository.findByBussinessOwnerName(businessOwnerName);
+    public CustomerDto updateSupplierName(String businessOwnerName, CustomerDto updatedSupplierDTO) {
+        Optional<CustomerDetails> existingSupplierOptional = supplierRepository.findByBussinessOwnerName(businessOwnerName);
         if (existingSupplierOptional.isPresent()) {
-            SupplierDetails existingSupplier = existingSupplierOptional.get();
+            CustomerDetails existingSupplier = existingSupplierOptional.get();
             modelMapper.map(updatedSupplierDTO, existingSupplier);
-            SupplierDetails updatedSupplier = supplierRepository.save(existingSupplier);
+            CustomerDetails updatedSupplier = supplierRepository.save(existingSupplier);
             logger.info("Updated supplier with name: {}", updatedSupplier.getBussinessOwnerName());
             return convertToDTO(updatedSupplier);
         } else {
@@ -119,13 +119,13 @@ public class SupplierService {
     
     
     // Helper method to convert SupplierDTo to SupplierDetails entity
-    private SupplierDetails convertToEntity(SupplierDTo supplierDTO) {
-        return modelMapper.map(supplierDTO, SupplierDetails.class);
+    private CustomerDetails convertToEntity(CustomerDto supplierDTO) {
+        return modelMapper.map(supplierDTO, CustomerDetails.class);
     }
 
     // Helper method to convert SupplierDetails entity to SupplierDTo
-    private SupplierDTo convertToDTO(SupplierDetails supplierDetails) {
-        return modelMapper.map(supplierDetails, SupplierDTo.class);
+    private CustomerDto convertToDTO(CustomerDetails supplierDetails) {
+        return modelMapper.map(supplierDetails, CustomerDto.class);
     }
     
     

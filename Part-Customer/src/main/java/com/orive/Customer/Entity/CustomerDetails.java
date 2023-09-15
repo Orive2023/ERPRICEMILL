@@ -19,47 +19,101 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customerdeatils")
+@Table(name = "customer")
 public class CustomerDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customerId;
 	
-	@Column(name = "supplier_name")
-	private String customerName;
+	@Column(name = "business_name")
+	private String businessName;
 	
-	@Column(name = "address")
-	private String address;
+	@Column(name = "bussiness_owner_name")
+	private String bussinessOwnerName;
 	
-	@Column(name = "country")
-	private String country;
+	@Column(name = "email_address")
+	private String emailAddress;
 	
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "web_url")
+	private String webUrl;
+	
+	@Column(name = "fax")
+	private String fax;
+	
+	@Column(name = "gstin")
+	private double gstin;
+	
+	@Column(name = "mobile_no")
+	private Long mobileNo;
+	
+	@Column(name = "pan_number")
+	private String panNumber;
+	
+	@Column(name = "adhar_number")
+	private double adharNumber;
+	
+	@Column(name = "street_address_1")
+	private String streetAddress1;
+	
+	@Column(name = "street_address_2")
+	private String streetAddress2;
+	
+	@Column(name = "city")
+	private String city;
+
 	@Column(name = "state")
 	private String state;
 	
 	@Column(name = "zip_code")
 	private Long zipCode;
 	
-	@Column(name = "email_address")
-	private String emailAddress;
+	@Column(name = "country")
+	private String country;
 	
-	@Column(name = "phone")
-	private Long phone;
+    @Column(name = "type_of_address") 
+	private String typeOfAddress;
 	
-	@Column(name = "mobile_no")
-	private Long mobileNo;
+    @Column(name = "account_holder_name")
+	private String accountHolderName;
+    
+    @Column(name = "bank_name")
+    private String bankName;
+    
+    @Column(name = "account_branch")
+    private String accountBranch;
+    
+    @Column(name = "bank_account_name")
+    private Double bankAccountName;
+    
+    @Column(name = "bank_account_type")
+    private String bankAccountType;
+    
+    @Column(name = "swift_or_bic_code")
+    private String swiftOrBicCode;
+    
+    @Column(name = "bank_routing_or_sort_code")
+    private String bankRoutingOrSortCode;
+    
+    @Column(name = "ifsc_code")
+    private String ifscCode;
+    
+    @Column(name = "micr_number")
+    private String micrNumber;
+    
+    @Column(name = "currency")
+    private String currency;
 	
-	@Column(name = "fax")
-	private String fax;
-	
-	@Column(name = "vat_no")
-	private String vatNo;
-	
-	@Column(name = "city")
-	private String city;
-
-	@Column(name = "commercial_registration_number")
-	private String commercialRegistrationNumber;
-	
+    @Column(name = "credit_limit")
+    private double creditLimit;
+    
+    @Column(name = "tax_id")
+    private String taxId;
+    
+    @Column(name = "terms_and_conditions")
+    private boolean termsAndConditions;
+    	
 }

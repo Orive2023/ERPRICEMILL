@@ -1,7 +1,7 @@
 package com.orive.Customer.Controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orive.Customer.Dto.CustomerDto;
-import com.orive.Customer.Entity.CustomerDetails;
 import com.orive.Customer.Service.CustomerService;
 
 
 @RestController
-@RequestMapping(value = "/customer")
+@RequestMapping(value = "/api/customer")
 public class CustomerController {
 	
 	private Logger logger=LoggerFactory.getLogger(CustomerController.class);
@@ -31,14 +30,14 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	 @PostMapping(value = "/save")
+	 @PostMapping(value = "/save/customer")
 	    public ResponseEntity<CustomerDto> createSupplier(@RequestBody CustomerDto mandi) {
 	    	logger.info("Creating a new Customer");
 	        CustomerDto created = customerService.createCustomer(mandi);
 	        return new ResponseEntity<>(created, HttpStatus.CREATED);
 	    }
 
-	    @GetMapping(value = "/get")
+	    @GetMapping(value = "/get/customer")
 	    public ResponseEntity<List<CustomerDto>> getAllProducts() {
 	    	 logger.info("Fetching all Customers");
 	        List<CustomerDto> products = customerService.getAllCustomer();
@@ -59,11 +58,25 @@ public class CustomerController {
 	        CustomerDto updatedMandi = customerService.updateCustomer(customerId, updatedMandiDTO);
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
+	    
+	    @PutMapping("/update/{bussinessOwnerName}")
+	    public ResponseEntity<CustomerDto> updateProduct(
+	            @PathVariable String bussinessOwnerName, @RequestBody CustomerDto updatedMandiDTO) {
+	    	logger.info("Updating customer with name: {}", bussinessOwnerName);
+	        CustomerDto updatedMandi = customerService.updateCustomer(bussinessOwnerName, updatedMandiDTO);
+	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
+	    }
 
 	    @DeleteMapping("/delete/{customerId}")
 	    public ResponseEntity<Void> deleteProduct(@PathVariable Long customerId) {
 	    	logger.info("Deleting customer with ID: {}", customerId);
 	        customerService.deleteCustomer(customerId);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	    
+	    @GetMapping("/count/customer")
+	    public long countCustomer()
+	    {
+	    	return customerService.countCustomer();
 	    }
 }

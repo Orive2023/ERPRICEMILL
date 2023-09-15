@@ -2,9 +2,9 @@ package com.orive.Supplier.Repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.orive.Supplier.Entity.SupplierDetails;
+import com.orive.Supplier.Entity.CustomerDetails;
 
-public interface SupplierRepositoy extends JpaRepository<SupplierDetails, Long>{
+public interface SupplierRepositoy extends JpaRepository<CustomerDetails, Long>{
 
-	Optional<SupplierDetails> findByBussinessOwnerName(String businessOwnerName);
+	Optional<CustomerDetails> findByBussinessOwnerName(String businessOwnerName);
 }

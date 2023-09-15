@@ -30,13 +30,15 @@ public class CustomerService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	//create customer 
 	public CustomerDto createCustomer(CustomerDto customer) {
 	    logger.info("Creating a new customer");
         CustomerDetails customerDetails = modelMapper.map(customer, CustomerDetails.class);
         CustomerDetails savedProduct = customerRepository.save(customerDetails);
         return modelMapper.map(savedProduct, CustomerDto.class);
     }
-
+	
+    //get all customer list by customerId
     public List<CustomerDto> getAllCustomer() {
 	 logger.info("Fetching all customers");	 
         List<CustomerDetails> mandiDetails = customerRepository.findAll();
@@ -45,6 +47,7 @@ public class CustomerService {
                        .collect(Collectors.toList());
     }
 
+    //get details of customer by customerId
     public List<CustomerDto> getCustomerById(List<Long> customerId) {
 	 logger.info("Fetchin  customers by IDs");
         List<CustomerDetails> mandiDetails = customerRepository.findAllById(customerId);
@@ -54,6 +57,7 @@ public class CustomerService {
                        .collect(Collectors.toList());
     }
 
+    //delete customer by customerId
     public void deleteCustomer(Long customerId) {
 	 logger.info("Deleting customer by ID: {}", customerId);
         CustomerDetails existingMandi = customerRepository.findById(customerId)
@@ -62,6 +66,7 @@ public class CustomerService {
         customerRepository.delete(existingMandi);
     }	
     
+    //update customer details by customerId
     public CustomerDto updateCustomer(Long customerId, CustomerDto updatedMandiDTO) {
 	 logger.info("Updating supplier with ID: {}", customerId);
         CustomerDetails mandiDetails = customerRepository.findById(customerId)
@@ -72,4 +77,23 @@ public class CustomerService {
         CustomerDetails updatedMandi = customerRepository.save(mandiDetails);
         return modelMapper.map(updatedMandi, CustomerDto.class);
     }
+    
+    //update customer by name
+  //update list by name
+    public CustomerDto updateCustomer(String bussinessOwnerName, CustomerDto updatedMandiDTO) {
+   	 logger.info("Updating supplier with name: {}", bussinessOwnerName);
+           CustomerDetails mandiDetails = customerRepository.findByBussinessOwnerName(bussinessOwnerName)
+                                                     .orElseThrow(() -> new EntityNotFoundException("customerName not found"));
+
+           modelMapper.map(updatedMandiDTO, mandiDetails);
+
+           CustomerDetails updatedMandi = customerRepository.save(mandiDetails);
+           return modelMapper.map(updatedMandi, CustomerDto.class);
+       }
+    
+    //count the total supplierlist
+    public long countCustomer()
+	 {
+		 return customerRepository.count();
+	 }
 }

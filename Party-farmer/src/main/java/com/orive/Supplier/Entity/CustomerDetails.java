@@ -22,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "supplier")
-public class SupplierDetails {
+public class CustomerDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

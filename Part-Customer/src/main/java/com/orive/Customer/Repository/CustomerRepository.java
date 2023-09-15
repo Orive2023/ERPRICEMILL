@@ -1,9 +1,12 @@
 package com.orive.Customer.Repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.orive.Customer.Entity.CustomerDetails;
+
 
 public interface CustomerRepository extends JpaRepository<CustomerDetails, Long>{
 
+	Optional<CustomerDetails> findByBussinessOwnerName(String businessOwnerName);
 }

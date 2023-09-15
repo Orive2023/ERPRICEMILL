@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orive.Supplier.Dto.SupplierDTo;
+import com.orive.Supplier.Dto.CustomerDto;
 import com.orive.Supplier.Service.SupplierService;
 
 @RestController
@@ -33,24 +33,24 @@ public class SupplierController {
 	
 	// Create a new supplier
     @PostMapping("/create/supplier")
-    public ResponseEntity<SupplierDTo> createSupplier(@RequestBody SupplierDTo supplierDTO) {
-        SupplierDTo createdSupplier = supplierService.createSupplier(supplierDTO);
+    public ResponseEntity<CustomerDto> createSupplier(@RequestBody CustomerDto supplierDTO) {
+        CustomerDto createdSupplier = supplierService.createSupplier(supplierDTO);
         logger.info("Created supplier with name: {}", createdSupplier.getBussinessOwnerName());
         return new ResponseEntity<>(createdSupplier, HttpStatus.CREATED);
     }
 
     // Get all suppliers
     @GetMapping("/get/suppliers")
-    public ResponseEntity<List<SupplierDTo>> getAllSuppliers() {
-        List<SupplierDTo> suppliers = supplierService.getAllSuppliers();
+    public ResponseEntity<List<CustomerDto>> getAllSuppliers() {
+        List<CustomerDto> suppliers = supplierService.getAllSuppliers();
         logger.info("Retrieved {} suppliers from the database", suppliers.size());
         return new ResponseEntity<>(suppliers, HttpStatus.OK);
     }
 
     // Get supplier by ID
     @GetMapping("/get/{supplierId}")
-    public ResponseEntity<SupplierDTo> getSupplierById(@PathVariable Long supplierId) {
-        Optional<SupplierDTo> supplier = supplierService.getSupplierById(supplierId);
+    public ResponseEntity<CustomerDto> getSupplierById(@PathVariable Long supplierId) {
+        Optional<CustomerDto> supplier = supplierService.getSupplierById(supplierId);
         if (supplier.isPresent()) {
             logger.info("Retrieved supplier with ID: {}", supplierId);
             return new ResponseEntity<>(supplier.get(), HttpStatus.OK);
@@ -62,8 +62,8 @@ public class SupplierController {
 
     // Update supplier by ID
     @PutMapping("/update/{supplierId}")
-    public ResponseEntity<SupplierDTo> updateSupplier(@PathVariable Long supplierId, @RequestBody SupplierDTo updatedSupplierDTO) {
-        SupplierDTo updatedSupplier = supplierService.updateSupplier(supplierId, updatedSupplierDTO);
+    public ResponseEntity<CustomerDto> updateSupplier(@PathVariable Long supplierId, @RequestBody CustomerDto updatedSupplierDTO) {
+        CustomerDto updatedSupplier = supplierService.updateSupplier(supplierId, updatedSupplierDTO);
         if (updatedSupplier != null) {
             logger.info("Updated supplier with ID: {}", supplierId);
             return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
@@ -75,8 +75,8 @@ public class SupplierController {
     
     // Update supplier by ID
     @PutMapping("/update/{businessOwnerName}")
-    public ResponseEntity<SupplierDTo> updateSupplierName(@PathVariable String businessOwnerName, @RequestBody SupplierDTo updatedSupplierDTO) {
-        SupplierDTo updatedSupplier = supplierService.updateSupplierName(businessOwnerName, updatedSupplierDTO);
+    public ResponseEntity<CustomerDto> updateSupplierName(@PathVariable String businessOwnerName, @RequestBody CustomerDto updatedSupplierDTO) {
+        CustomerDto updatedSupplier = supplierService.updateSupplierName(businessOwnerName, updatedSupplierDTO);
         if (updatedSupplier != null) {
             logger.info("Updated supplier with name: {}", businessOwnerName);
             return new ResponseEntity<>(updatedSupplier, HttpStatus.OK);
@@ -97,8 +97,8 @@ public class SupplierController {
 
     // Get suppliers by business owner name
     @GetMapping("/byBusinessOwner/{businessOwnerName}")
-    public ResponseEntity<List<SupplierDTo>> getSuppliersByBusinessOwnerName(@PathVariable String businessOwnerName) {
-        List<SupplierDTo> suppliers = supplierService.getSuppliersByBusinessOwnerName(businessOwnerName);
+    public ResponseEntity<List<CustomerDto>> getSuppliersByBusinessOwnerName(@PathVariable String businessOwnerName) {
+        List<CustomerDto> suppliers = supplierService.getSuppliersByBusinessOwnerName(businessOwnerName);
         if (!suppliers.isEmpty()) {
             logger.info("Retrieved {} suppliers with business owner name: {}", suppliers.size(), businessOwnerName);
             return new ResponseEntity<>(suppliers, HttpStatus.OK);
