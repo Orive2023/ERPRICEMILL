@@ -6,10 +6,14 @@ spring:
   cloud:
     gateway:
       routes:
+#      - id: LOGIN-SERVICE
+#        uri: lb://LOGIN-SERVICE
+#        predicates:
+#        - Path=/** 
       - id: SUPPLIER-SERVICE
         uri: lb://SUPPLIER-SERVICE
         predicates:
-        - Path=/supplier/**  
+        - Path=/suppliers/**  
       - id: CUSTOMER-SERVICE
         uri: lb://CUSTOMER-SERVICE
         predicates:
