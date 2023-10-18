@@ -1,32 +1,29 @@
 package com.orive.Customer.Entity;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customer")
-public class CustomerDetails {
+@Table(name = "corporation_customer")
+public class CorporationCustomerDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long customerId;
+	private Long corporationCustomerId;
 	
 	@Column(name = "business_name")
 	private String businessName;
@@ -47,7 +44,7 @@ public class CustomerDetails {
 	private String fax;
 	
 	@Column(name = "gstin")
-	private double gstin;
+	private String gstin;
 	
 	@Column(name = "mobile_no")
 	private Long mobileNo;
@@ -56,7 +53,7 @@ public class CustomerDetails {
 	private String panNumber;
 	
 	@Column(name = "adhar_number")
-	private double adharNumber;
+	private Long adharNumber;
 	
 	@Column(name = "street_address_1")
 	private String streetAddress1;
@@ -89,7 +86,7 @@ public class CustomerDetails {
     private String accountBranch;
     
     @Column(name = "bank_account_name")
-    private Double bankAccountName;
+    private Long bankAccountName;
     
     @Column(name = "bank_account_type")
     private String bankAccountType;
@@ -110,12 +107,11 @@ public class CustomerDetails {
     private String currency;
 	
     @Column(name = "credit_limit")
-    private double creditLimit;
+    private Long creditLimit;
     
     @Column(name = "tax_id")
     private String taxId;
     
     @Column(name = "terms_and_conditions")
     private boolean termsAndConditions;
-    	
 }

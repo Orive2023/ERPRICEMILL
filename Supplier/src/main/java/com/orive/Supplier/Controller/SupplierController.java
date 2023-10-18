@@ -55,7 +55,7 @@ public class SupplierController {
     }
 
     // Get supplier by ID
-    @GetMapping("/get/{supplierId}")
+    @GetMapping("/get/{individualSupplierId}")
     public ResponseEntity<IndividualSupplierDto> getSupplierById(@PathVariable Long individualSupplierId) {
         Optional<IndividualSupplierDto> supplier = individualSupplierService.getSupplierById(individualSupplierId);
         if (supplier.isPresent()) {
@@ -68,7 +68,7 @@ public class SupplierController {
     }
 
     // Update supplier by ID
-    @PutMapping("/update/{supplierId}")
+    @PutMapping("/update/{individualSupplierId}")
     public ResponseEntity<IndividualSupplierDto> updateSupplier(@PathVariable Long individualSupplierId, @RequestBody IndividualSupplierDto updatedSupplierDTO) {
         IndividualSupplierDto updatedSupplier = individualSupplierService.updateSupplier(individualSupplierId, updatedSupplierDTO);
         if (updatedSupplier != null) {
@@ -95,7 +95,7 @@ public class SupplierController {
 
 
     // Delete supplier by ID
-    @DeleteMapping("/delete/{supplierId}")
+    @DeleteMapping("/delete/{individualSupplierId}")
     public ResponseEntity<Void> deleteSupplier(@PathVariable Long individualSupplierId) {
         individualSupplierService.deleteSupplier(individualSupplierId);
         logger.info("Deleted supplier with ID: {}", individualSupplierId);

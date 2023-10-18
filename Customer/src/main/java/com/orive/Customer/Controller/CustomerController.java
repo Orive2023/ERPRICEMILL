@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orive.Customer.Dto.CustomerDto;
-import com.orive.Customer.Service.CustomerService;
+import com.orive.Customer.Dto.CorporationCustomerDto;
+import com.orive.Customer.Dto.IndividualCustomerDto;
+import com.orive.Customer.Service.CorporationCustomerService;
+import com.orive.Customer.Service.IndividualCustomerService;
 
 import jakarta.ws.rs.NotFoundException;
 
@@ -31,33 +33,36 @@ public class CustomerController {
 	private Logger logger=LoggerFactory.getLogger(CustomerController.class);
 
 	@Autowired
-	private CustomerService customerService;
+	private IndividualCustomerService individualCustomerService;
+	
+	@Autowired
+	private CorporationCustomerService corporationCustomerService;
 	
 	 @PostMapping(value = "/save/customer")
-	    public ResponseEntity<CustomerDto> createSupplier(@RequestBody CustomerDto mandi) {
+	    public ResponseEntity<IndividualCustomerDto> createSupplier(@RequestBody IndividualCustomerDto mandi) {
 	    	logger.info("Creating a new Customer");
-	        CustomerDto created = customerService.createCustomer(mandi);
+	        IndividualCustomerDto created = individualCustomerService.createCustomer(mandi);
 	        return new ResponseEntity<>(created, HttpStatus.CREATED);
 	    }
 
 	    @GetMapping(value = "/get/customer")
-	    public ResponseEntity<List<CustomerDto>> getAllProducts() {
+	    public ResponseEntity<List<IndividualCustomerDto>> getAllProducts() {
 	    	 logger.info("Fetching all Customers");
-	        List<CustomerDto> products = customerService.getAllCustomer();
+	        List<IndividualCustomerDto> products = individualCustomerService.getAllCustomer();
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 
-	    @GetMapping("/get/{customerId}")
-	    public ResponseEntity<List<CustomerDto>> getProductsByIds(@PathVariable List<Long> customerId) {
+	    @GetMapping("/get/{individualCustomerId}")
+	    public ResponseEntity<List<IndividualCustomerDto>> getProductsByIds(@PathVariable List<Long> individualCustomerId) {
 	    	logger.info("Fetching customers by IDs");
-	        List<CustomerDto> products = customerService.getCustomerById(customerId);
+	        List<IndividualCustomerDto> products = individualCustomerService.getCustomerById(individualCustomerId);
 	        return new ResponseEntity<>(products, HttpStatus.OK);
 	    }
 	    
 	    @GetMapping("/customerName")
-	    public ResponseEntity<List<CustomerDto>> getCustomersByBusinessOwnerName(
+	    public ResponseEntity<List<IndividualCustomerDto>> getCustomersByBusinessOwnerName(
 	            @RequestParam("customerName") String customerName) {
-	        List<CustomerDto> customers = customerService.getByCustomerName(customerName);
+	        List<IndividualCustomerDto> customers = individualCustomerService.getByCustomerName(customerName);
 	        if (!customers.isEmpty()) {
 	            return new ResponseEntity<>(customers, HttpStatus.OK);
 	        } else {
@@ -65,32 +70,95 @@ public class CustomerController {
 	        }
 	    }
 
-	    @PutMapping("/update/{customerId}")
-	    public ResponseEntity<CustomerDto> updateProduct(
-	            @PathVariable Long customerId, @RequestBody CustomerDto updatedMandiDTO) {
-	    	logger.info("Updating customer with ID: {}", customerId);
-	        CustomerDto updatedMandi = customerService.updateCustomer(customerId, updatedMandiDTO);
+	    @PutMapping("/update/{individualCustomerId}")
+	    public ResponseEntity<IndividualCustomerDto> updateProduct(
+	            @PathVariable Long individualCustomerId, @RequestBody IndividualCustomerDto updatedMandiDTO) {
+	    	logger.info("Updating customer with ID: {}", individualCustomerId);
+	        IndividualCustomerDto updatedMandi = individualCustomerService.updateCustomer(individualCustomerId, updatedMandiDTO);
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
 	    
 	    @PutMapping("/update/{customerName}")
-	    public ResponseEntity<CustomerDto> updateProduct(
-	            @PathVariable String customerName, @RequestBody CustomerDto updatedMandiDTO) {
+	    public ResponseEntity<IndividualCustomerDto> updateProduct(
+	            @PathVariable String customerName, @RequestBody IndividualCustomerDto updatedMandiDTO) {
 	    	logger.info("Updating customer with name: {}", customerName);
-	        CustomerDto updatedMandi = customerService.updateCustomer(customerName, updatedMandiDTO);
+	        IndividualCustomerDto updatedMandi = individualCustomerService.updateCustomer(customerName, updatedMandiDTO);
 	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
 	    }
 
-	    @DeleteMapping("/delete/{customerId}")
-	    public ResponseEntity<Void> deleteProduct(@PathVariable Long customerId) {
-	    	logger.info("Deleting customer with ID: {}", customerId);
-	        customerService.deleteCustomer(customerId);
+	    @DeleteMapping("/delete/{individualCustomerId}")
+	    public ResponseEntity<Void> deleteProduct(@PathVariable Long individualCustomerId) {
+	    	logger.info("Deleting customer with ID: {}", individualCustomerId);
+	        individualCustomerService.deleteCustomer(individualCustomerId);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	    }
 	    
 	    @GetMapping("/count/customer")
 	    public long countCustomer()
 	    {
-	    	return customerService.countCustomer();
+	    	return individualCustomerService.countCustomer();
+	    }
+	    
+	    
+	    //----------------------------------------------------------------------------------------------------------------------
+	    
+	    @PostMapping(value = "/save/corporatecustomer")
+	    public ResponseEntity<CorporationCustomerDto> createCorporateSupplier(@RequestBody CorporationCustomerDto mandi) {
+	    	logger.info("Creating a new Customer");
+	        CorporationCustomerDto created = corporationCustomerService.createCorporationCustomer(mandi);
+	        return new ResponseEntity<>(created, HttpStatus.CREATED);
+	    }
+
+	    @GetMapping(value = "/get/corporatecustomer")
+	    public ResponseEntity<List<CorporationCustomerDto>> getAllCorporateProducts() {
+	    	 logger.info("Fetching all Customers");
+	        List<CorporationCustomerDto> products = corporationCustomerService.getAllCorporationCustomer();
+	        return new ResponseEntity<>(products, HttpStatus.OK);
+	    }
+
+	    @GetMapping("/get/{corporationCustomerId}")
+	    public ResponseEntity<List<CorporationCustomerDto>> getCorporateProductsByIds(@PathVariable List<Long> corporationCustomerId) {
+	    	logger.info("Fetching customers by IDs");
+	        List<CorporationCustomerDto> products = corporationCustomerService.getCorporationCustomerById(corporationCustomerId);
+	        return new ResponseEntity<>(products, HttpStatus.OK);
+	    }
+	    @GetMapping("/corporate/customerName")
+	    public ResponseEntity<List<CorporationCustomerDto>> getCorporateCustomersByBusinessOwnerName(
+	            @RequestParam("customerName") String customerName) {
+	        List<CorporationCustomerDto> customers = corporationCustomerService.getByCustomerName(customerName);
+	        if (!customers.isEmpty()) {
+	            return new ResponseEntity<>(customers, HttpStatus.OK);
+	        } else {
+	            throw new NotFoundException("No customers found with business owner name: " + customerName);
+	        }
+	    }
+
+	    @PutMapping("/update/{corporationCustomerId}")
+	    public ResponseEntity<CorporationCustomerDto> updateCorporateProduct(
+	            @PathVariable Long corporationCustomerId, @RequestBody CorporationCustomerDto updatedMandiDTO) {
+	    	logger.info("Updating customer with ID: {}", corporationCustomerId);
+	        CorporationCustomerDto updatedMandi = corporationCustomerService.updateCorporationCustomer(corporationCustomerId, updatedMandiDTO);
+	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
+	    }
+	    
+	    @PutMapping("/corporationupdate/{customerName}")
+	    public ResponseEntity<CorporationCustomerDto> updateCorporateProduct(
+	            @PathVariable String customerName, @RequestBody CorporationCustomerDto updatedMandiDTO) {
+	    	logger.info("Updating customer with name: {}", customerName);
+	        CorporationCustomerDto updatedMandi = corporationCustomerService.updateCorporationCustomer(customerName, updatedMandiDTO);
+	        return new ResponseEntity<>(updatedMandi, HttpStatus.OK);
+	    }
+
+	    @DeleteMapping("/delete/{corporationCustomerId}")
+	    public ResponseEntity<Void> deleteCorporateProduct(@PathVariable Long corporationCustomerId) {
+	    	logger.info("Deleting customer with ID: {}", corporationCustomerId);
+	    	corporationCustomerService.deleteCorporationCustomer(corporationCustomerId);
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	    
+	    @GetMapping("/count/corporationcustomer")
+	    public long countCorporateCustomer()
+	    {
+	    	return individualCustomerService.countCustomer();
 	    }
 }

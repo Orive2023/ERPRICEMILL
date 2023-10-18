@@ -1,7 +1,12 @@
 package com.orive.Transportation.Dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,37 +18,32 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Transportation {
+public class Transportation{
 
-    private Long transportationId;
-	
-	private String vechicleType;
-	
-	private String vechicleNumber;
-	
-	private String owrnerName;
-	
+	private Long transportationId;
+	private Long serialNo;
+	private Long referenceNo;
+	private String nameOfTransporterOffice;
+	private String gstin;
+	private String ownerName;
+	private String panNo;
+	private String adhaarNo;
+	private Long phoneNo;
+	private Long mobileNo;
+	private String country;
+	private String state;
+	private String city;
+	private Long postalOrZipCode;
+	private String address;
 	private String driverName;
-	
-	private String driverPanNumber;
-	
-	private String driverDrivingLincenseNumber;
-	
-	private String vechicleRcNumber;
-	
-	private Long vechicleCapacity;
-	
-	private double vechicleNetQuantityLoaded;
-	
-	private String fuel;
-	
-	private Double vechicleRun;
-	
-	private Double rateOfFuelPerKilometer;
-	
-	private Double fuelTotalRate;
-	
-	private Date arrivalDate;
-	
-	private Date reachedDate;
+	private String driverPanNo;
+	private Long driverMobileNO;
+	private String licenceNo;
+	private String rcNo;
+	private String vechicleType;
+	private String weightmentDetails;
+	private String driverAddress;
+	private String approvedBy;
+	private String clearedBy;
+	private Boolean date;
 }

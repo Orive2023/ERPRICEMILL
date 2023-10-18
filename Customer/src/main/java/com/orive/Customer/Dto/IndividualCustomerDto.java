@@ -15,19 +15,19 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CustomerDto {
+public class IndividualCustomerDto {
 
-	private Long customerId;
+	private Long individualCustomerId;
 	private String businessName;
 	private String customerName;
 	private String emailAddress;
 	private String gender;
 	private String webUrl;
 	private String fax;
-	private double gstin;
+	private String gstin;
 	private Long mobileNo;
 	private String panNumber;
-	private double adharNumber;
+	private Long adharNumber;
 	private String streetAddress1;
 	private String streetAddress2;
 	private String city;
@@ -38,14 +38,14 @@ public class CustomerDto {
 	private String accountHolderName;
     private String bankName;
     private String accountBranch;
-    private Double bankAccountName;
+    private Long bankAccountName;
     private String bankAccountType;
     private String swiftOrBicCode;
     private String bankRoutingOrSortCode;
     private String ifscCode;
     private String micrNumber;
     private String currency;
-    private double creditLimit;
+    private Long creditLimit;
     private String taxId;
     private boolean termsAndConditions;
 	

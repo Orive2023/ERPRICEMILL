@@ -27,20 +27,23 @@ public class TransportationService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	//create 
 	public Transportation createTransportationDetails(Transportation transportation) {
         TransportationDetails transportationDetails = modelMapper.map(transportation, TransportationDetails.class);
         TransportationDetails savedProduct = transportationRepository.save(transportationDetails);
         return modelMapper.map(savedProduct, Transportation.class);
     }
 
- public List<Transportation> getAllTransportation() {
+	//get All TRansporation details
+        public List<Transportation> getAllTransportation() {
         List<TransportationDetails> transportationDetails = transportationRepository.findAll();
         return transportationDetails.stream()
                        .map(trans -> modelMapper.map(trans, Transportation.class))
                        .collect(Collectors.toList());
     }
 
- public List<Transportation> getTransportationById(List<Long> transportationId) {
+        //getAll details by Id
+        public List<Transportation> getTransportationById(List<Long> transportationId) {
         List<TransportationDetails> transportationDetails = transportationRepository.findAllById(transportationId);
 
         return transportationDetails.stream()
@@ -48,13 +51,15 @@ public class TransportationService {
                        .collect(Collectors.toList());
     }
 
- public void deleteTransportation(Long transportationId) {
+        //delete details By id
+       public void deleteTransportation(Long transportationId) {
         TransportationDetails transportationDetails = transportationRepository.findById(transportationId)
                                                   .orElseThrow(() -> new EntityNotFoundException("TransportationDetails not found"));
 
         transportationRepository.delete(transportationDetails);
     }
  
+       //update details By id
      public Transportation updateTransportation(Long transportationId, Transportation updatedDTO) {
         TransportationDetails transportationDetails = transportationRepository.findById(transportationId)
                                                   .orElseThrow(() -> new EntityNotFoundException("TransportationDetails not found"));
@@ -64,4 +69,10 @@ public class TransportationService {
         TransportationDetails updated = transportationRepository.save(transportationDetails);
         return modelMapper.map(updated, Transportation.class);
     }
+     
+     //count transporation Details
+     public long countTransporationDetails()
+     {
+    	return transportationRepository.count();
+     }
 }
