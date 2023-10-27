@@ -104,7 +104,7 @@ public class CorporationCustomerService {
            return modelMapper.map(updatedMandi, CorporationCustomerDto.class);
        }
     
-    //count the total supplierlist
+    //count the total customerlist
     public long countCustomer()
 	 {
 		 return individualCustomerRepository.count();
