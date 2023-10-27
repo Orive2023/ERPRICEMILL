@@ -40,14 +40,11 @@ public class IndividualCustomerDetails {
 	@Column(name = "gender")
 	private String gender;
 	
-	@Column(name = "web_url")
-	private String webUrl;
-	
 	@Column(name = "fax")
 	private String fax;
 	
-	@Column(name = "gstin")
-	private String gstin;
+	@Column(name = "gstin_no")
+	private String gstinNo;
 	
 	@Column(name = "mobile_no")
 	private Long mobileNo;
@@ -70,8 +67,8 @@ public class IndividualCustomerDetails {
 	@Column(name = "state")
 	private String state;
 	
-	@Column(name = "zip_code")
-	private Long zipCode;
+	@Column(name = "postal_or_zip_code")
+	private Long postalOrZipCode;
 	
 	@Column(name = "country")
 	private String country;
@@ -85,11 +82,11 @@ public class IndividualCustomerDetails {
     @Column(name = "bank_name")
     private String bankName;
     
-    @Column(name = "account_branch")
-    private String accountBranch;
+    @Column(name = "bank_branch")
+    private String bankBranch;
     
-    @Column(name = "bank_account_name")
-    private Long bankAccountName;
+    @Column(name = "bank_account_number")
+    private Long bankAccountNumber;
     
     @Column(name = "bank_account_type")
     private String bankAccountType;
@@ -114,6 +111,15 @@ public class IndividualCustomerDetails {
     
     @Column(name = "tax_id")
     private String taxId;
+    
+    @Column(name = "approved_by")
+    private String approvedBy;
+    
+    @Column(name = "cleared_by")
+    private String clearedBy;
+    
+    @Column(name = "date")
+    private String date;
     
     @Column(name = "terms_and_conditions")
     private boolean termsAndConditions;

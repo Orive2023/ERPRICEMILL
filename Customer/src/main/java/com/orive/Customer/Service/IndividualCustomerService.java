@@ -83,7 +83,7 @@ public class IndividualCustomerService {
     
     //update customer details by customerId
     public IndividualCustomerDto updateCustomer(Long individualCustomerId, IndividualCustomerDto updatedMandiDTO) {
-	 logger.info("Updating supplier with ID: {}", individualCustomerId);
+	 logger.info("Updating customer with ID: {}", individualCustomerId);
         IndividualCustomerDetails mandiDetails = individualCustomerRepository.findById(individualCustomerId)
                                                   .orElseThrow(() -> new EntityNotFoundException("customerId not found"));
 
@@ -96,7 +96,7 @@ public class IndividualCustomerService {
     //update customer by name
   //update list by name
     public IndividualCustomerDto updateCustomer(String customerName, IndividualCustomerDto updatedMandiDTO) {
-   	 logger.info("Updating supplier with name: {}", customerName);
+   	 logger.info("Updating customer with name: {}", customerName);
            IndividualCustomerDetails mandiDetails = individualCustomerRepository.findByCustomerName(customerName)
                                                      .orElseThrow(() -> new EntityNotFoundException("customerName not found"));
 
@@ -106,7 +106,7 @@ public class IndividualCustomerService {
            return modelMapper.map(updatedMandi, IndividualCustomerDto.class);
        }
     
-    //count the total supplierlist
+    //count the total customerlist
     public long countCustomer()
 	 {
 		 return individualCustomerRepository.count();

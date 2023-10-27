@@ -22,9 +22,8 @@ public class IndividualCustomerDto {
 	private String customerName;
 	private String emailAddress;
 	private String gender;
-	private String webUrl;
 	private String fax;
-	private String gstin;
+	private String gstinNo;
 	private Long mobileNo;
 	private String panNumber;
 	private Long adharNumber;
@@ -32,13 +31,13 @@ public class IndividualCustomerDto {
 	private String streetAddress2;
 	private String city;
 	private String state;
-	private Long zipCode;
+	private Long postalOrZipCode;
 	private String country;
 	private String typeOfAddress;
 	private String accountHolderName;
     private String bankName;
-    private String accountBranch;
-    private Long bankAccountName;
+    private String bankBranch;
+    private Long bankAccountNumber;
     private String bankAccountType;
     private String swiftOrBicCode;
     private String bankRoutingOrSortCode;
@@ -47,6 +46,9 @@ public class IndividualCustomerDto {
     private String currency;
     private Long creditLimit;
     private String taxId;
+    private String approvedBy;
+    private String clearedBy;
+    private String date;
     private boolean termsAndConditions;
 	
 }
