@@ -10,6 +10,15 @@ spring:
 #        uri: lb://LOGIN-SERVICE
 #        predicates:
 #        - Path=/** 
+      - id: RABI-SERVICE
+        uri: lb://RABI-SERVICE
+        predicates:
+        - Path=/**
+      - id: KHARIF-SERVICE
+        uri: lb://KHARIF-SERVICE
+        predicates:
+        - Path=/** 
+      
       - id: SUPPLIER-SERVICE
         uri: lb://SUPPLIER-SERVICE
         predicates:

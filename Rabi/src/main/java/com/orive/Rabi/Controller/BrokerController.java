@@ -23,7 +23,7 @@ import com.orive.Rabi.Service.BrokerService;
 
 
 @RestController
-@RequestMapping(value = "/rabibroker")
+@RequestMapping(value = "rabibroker")
 @CrossOrigin("*")
 public class BrokerController {
 	
