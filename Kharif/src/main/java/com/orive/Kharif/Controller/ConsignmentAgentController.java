@@ -24,7 +24,7 @@ import com.orive.Kharif.Service.ConsignmentAgentService;
 
 
 @RestController
-@RequestMapping(value = "/consignmentagent")
+@RequestMapping(value = "/kharifconsignmentagent")
 @CrossOrigin("*")
 public class ConsignmentAgentController {
 	
@@ -34,46 +34,46 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
 	private ConsignmentAgentService consignmentAgentService  ;
 	
 	
-	//API FOR ConsignmentAgent
-	// Create a new ConsignmentAgent
-    @PostMapping("/create/consignmentagent")
+	//API FOR KharifConsignmentAgent
+	// Create a new KharifConsignmentAgent
+    @PostMapping("/create/kharifconsignmentagent")
     public ResponseEntity<ConsignmentAgentDto> createConsignmentAgent(@RequestBody ConsignmentAgentDto consignmentAgentDto) {
     	ConsignmentAgentDto createdConsignmentAgent = consignmentAgentService.createConsignmentAgent(consignmentAgentDto);
-        logger.info("Created ConsignmentAgent with name: {}", createdConsignmentAgent.getConsignmentAgentId());
+        logger.info("Created KharifConsignmentAgent with name: {}", createdConsignmentAgent.getConsignmentAgentId());
         return new ResponseEntity<>(createdConsignmentAgent, HttpStatus.CREATED);
     }
 
-    // Get all ConsignmentAgent
+    // Get all KharifConsignmentAgent
     
-    @GetMapping("/get/consignmentagent")
+    @GetMapping("/get/kharifconsignmentagent")
     public ResponseEntity<List<ConsignmentAgentDto>> getAllConsignmentAgents() {
         List<ConsignmentAgentDto> consignmentAgent = consignmentAgentService.getAllConsignmentAgents();
-        logger.info("Retrieved {} ConsignmentAgent from the database", consignmentAgent.size());
+        logger.info("Retrieved {} KharifConsignmentAgent from the database", consignmentAgent.size());
         return new ResponseEntity<>(consignmentAgent, HttpStatus.OK);
     }
 
-    // Get ConsignmentAgent by ID
-    @GetMapping("/get/{consignmentagentId}")
+    // Get KharifConsignmentAgent by ID
+    @GetMapping("/get/{kharifconsignmentagentId}")
     public ResponseEntity<ConsignmentAgentDto> getConsignmentAgentById(@PathVariable Long consignmentAgentId) {
         Optional<ConsignmentAgentDto> consignmentAgent = consignmentAgentService.getConsignmentAgentId(consignmentAgentId);
         if (consignmentAgent.isPresent()) {
-            logger.info("Retrieved ConsignmentAgent with ID: {}", consignmentAgentId);
+            logger.info("Retrieved KharifConsignmentAgent with ID: {}", consignmentAgentId);
             return new ResponseEntity<>(consignmentAgent.get(), HttpStatus.OK);
         } else {
-            logger.warn("ConsignmentAgent with ID {} not found", consignmentAgentId);
+            logger.warn("KharifConsignmentAgent with ID {} not found", consignmentAgentId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Update ConsignmentAgent by ID
-    @PutMapping("/update/{consignmentagentId}")
+    // Update KharifConsignmentAgent by ID
+    @PutMapping("/update/{kharifconsignmentagentId}")
     public ResponseEntity<ConsignmentAgentDto> updateConsignmentAgent(@PathVariable Long consignmentAgentId, @RequestBody ConsignmentAgentDto updatedConsignmentAgentDto) {
     	ConsignmentAgentDto updatedConsignmentAgent = consignmentAgentService.updateConsignmentAgent(consignmentAgentId, updatedConsignmentAgentDto);
         if (updatedConsignmentAgent != null) {
-            logger.info("Updated ConsignmentAgent with ID: {}", consignmentAgentId);
+            logger.info("Updated KharifConsignmentAgent with ID: {}", consignmentAgentId);
             return new ResponseEntity<>(updatedConsignmentAgent, HttpStatus.OK);
         } else {
-            logger.warn("ConsignmentAgent with ID {} not found for update", consignmentAgentId);
+            logger.warn("KharifConsignmentAgent with ID {} not found for update", consignmentAgentId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -81,15 +81,15 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
     
 
 
-    // Delete ConsignmentAgent by ID
-    @DeleteMapping("/delete/{consignmentagentId}")
+    // Delete KharifConsignmentAgent by ID
+    @DeleteMapping("/delete/{kharifconsignmentagentId}")
     public ResponseEntity<Void> deleteConsignmentAgent(@PathVariable Long consignmentAgentId) {
         consignmentAgentService.deleteConsignmentAgent(consignmentAgentId);
-        logger.info("Deleted ConsignmentAgent with ID: {}", consignmentAgentId);
+        logger.info("Deleted KharifConsignmentAgent with ID: {}", consignmentAgentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 	    
-	    @GetMapping("/count/consignmentagent")
+	    @GetMapping("/count/kharifconsignmentagent")
 	    public long countConsignmentAgent()
 	    {
 	    	return consignmentAgentService.countConsignmentAgent();

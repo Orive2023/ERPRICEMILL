@@ -14,8 +14,6 @@ import com.orive.Kharif.Dto.FarmerDto;
 import com.orive.Kharif.Entity.FarmerEntity;
 import com.orive.Kharif.Repository.FarmerRepository;
 
-
-
 @Service
 public class FarmerService {
 	
@@ -29,8 +27,6 @@ public class FarmerService {
 		private ModelMapper modelMapper;
 		
 		
-
-
 	    // Create
 	    public FarmerDto createFarmer(FarmerDto farmerDto) {
 	    	FarmerEntity farmerEntity = convertToEntity(farmerDto);

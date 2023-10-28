@@ -23,7 +23,7 @@ import com.orive.Kharif.Service.BrokerService;
 
 
 @RestController
-@RequestMapping(value = "/broker")
+@RequestMapping(value = "/kharifbroker")
 @CrossOrigin("*")
 public class BrokerController {
 	
@@ -33,46 +33,46 @@ public class BrokerController {
 	private BrokerService  brokerService;
 	
 	
-	//API FOR Broker
-	// Create a new Broker
-    @PostMapping("/create/broker")
+	//API FOR KharifBroker
+	// Create a new KharifBroker
+    @PostMapping("/create/kharifbroker")
     public ResponseEntity<BrokerDto> createBroker(@RequestBody BrokerDto brokerDto) {
     	BrokerDto createdBroker = brokerService.createBroker(brokerDto);
-        logger.info("Created Broker with name: {}", createdBroker.getBrokerId());
+        logger.info("Created KharifBroker with name: {}", createdBroker.getBrokerId());
         return new ResponseEntity<>(createdBroker, HttpStatus.CREATED);
     }
 
-    // Get all Broker
+    // Get all KharifBroker
     
-    @GetMapping("/get/broker")
+    @GetMapping("/get/kharifbroker")
     public ResponseEntity<List<BrokerDto>> getAllBrokers() {
         List<BrokerDto> brokers = brokerService.getAllBrokers();
-        logger.info("Retrieved {} Broker from the database", brokers.size());
+        logger.info("Retrieved {} KharifBroker from the database", brokers.size());
         return new ResponseEntity<>(brokers, HttpStatus.OK);
     }
 
-    // Get Broker by ID
-    @GetMapping("/get/{brokerId}")
+    // Get KharifBroker by ID
+    @GetMapping("/get/{kharifbrokerId}")
     public ResponseEntity<BrokerDto> getBrokerById(@PathVariable Long brokerId) {
         Optional<BrokerDto> broker = brokerService.getBrokerById(brokerId);
         if (broker.isPresent()) {
-            logger.info("Retrieved Broker with ID: {}", brokerId);
+            logger.info("Retrieved KharifBroker with ID: {}", brokerId);
             return new ResponseEntity<>(broker.get(), HttpStatus.OK);
         } else {
-            logger.warn("Broker with ID {} not found", brokerId);
+            logger.warn("KharifBroker with ID {} not found", brokerId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Update Broker by ID
-    @PutMapping("/update/{brokerId}")
+    // Update KharifBroker by ID
+    @PutMapping("/update/{kharifbrokerId}")
     public ResponseEntity<BrokerDto> updateBroker(@PathVariable Long brokerId, @RequestBody BrokerDto updatedBrokerDto) {
     	BrokerDto updatedBroker = brokerService.updateBroker(brokerId, updatedBrokerDto);
         if (updatedBroker != null) {
-            logger.info("Updated Broker with ID: {}", brokerId);
+            logger.info("Updated KharifBroker with ID: {}", brokerId);
             return new ResponseEntity<>(updatedBroker, HttpStatus.OK);
         } else {
-            logger.warn("Broker with ID {} not found for update", brokerId);
+            logger.warn("KharifBroker with ID {} not found for update", brokerId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -80,15 +80,15 @@ public class BrokerController {
     
 
 
-    // Delete Broker by ID
-    @DeleteMapping("/delete/{brokerId}")
+    // Delete KharifBroker by ID
+    @DeleteMapping("/delete/{kharifbrokerId}")
     public ResponseEntity<Void> deleteBroker(@PathVariable Long brokerId) {
         brokerService.deleteBroker(brokerId);
-        logger.info("Deleted Broker with ID: {}", brokerId);
+        logger.info("Deleted KharifBroker with ID: {}", brokerId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 	    
-	    @GetMapping("/count/broker")
+	    @GetMapping("/count/kharifbroker")
 	    public long countBroker()
 	    {
 	    	return brokerService.countBroker();

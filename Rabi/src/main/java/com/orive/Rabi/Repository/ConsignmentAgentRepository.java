@@ -1,5 +1,9 @@
 package com.orive.Rabi.Repository;
 
-public class ConsignmentAgentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.orive.Rabi.Entity.ConsignmentAgentEntity;
+
+public interface ConsignmentAgentRepository extends JpaRepository<ConsignmentAgentEntity, Long> {
 
 }

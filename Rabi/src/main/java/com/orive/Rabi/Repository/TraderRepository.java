@@ -1,5 +1,9 @@
 package com.orive.Rabi.Repository;
 
-public class TraderRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.orive.Rabi.Entity.TraderEntity;
+
+public interface TraderRepository extends JpaRepository<TraderEntity, Long> {
 
 }
