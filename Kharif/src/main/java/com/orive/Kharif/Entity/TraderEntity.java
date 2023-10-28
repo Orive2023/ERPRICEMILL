@@ -31,7 +31,7 @@ public class TraderEntity {
 	@Column(name = "season")
 	private String season;
 	
-	@Column(name = "business_name")
+	@Column(name = "person_of_contact")
 	private String personOfContact;
 	
 	@Column(name = "supplier_name")
