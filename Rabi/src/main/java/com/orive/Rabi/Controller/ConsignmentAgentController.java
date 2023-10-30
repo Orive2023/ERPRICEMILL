@@ -53,7 +53,7 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
     }
 
     // Get RabiConsignmentAgent by ID
-    @GetMapping("/get/{rabiconsignmentagentId}")
+    @GetMapping("/get/rabi/{consignmentagentId}")
     public ResponseEntity<ConsignmentAgentDto> getConsignmentAgentById(@PathVariable Long consignmentAgentId) {
         Optional<ConsignmentAgentDto> consignmentAgent = consignmentAgentService.getConsignmentAgentId(consignmentAgentId);
         if (consignmentAgent.isPresent()) {
@@ -66,7 +66,7 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
     }
 
     // Update RabiConsignmentAgent by ID
-    @PutMapping("/update/{rabiconsignmentagentId}")
+    @PutMapping("/update/rabi/{consignmentagentId}")
     public ResponseEntity<ConsignmentAgentDto> updateConsignmentAgent(@PathVariable Long consignmentAgentId, @RequestBody ConsignmentAgentDto updatedConsignmentAgentDto) {
     	ConsignmentAgentDto updatedConsignmentAgent = consignmentAgentService.updateConsignmentAgent(consignmentAgentId, updatedConsignmentAgentDto);
         if (updatedConsignmentAgent != null) {
@@ -82,7 +82,7 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
 
 
     // Delete RabiConsignmentAgent by ID
-    @DeleteMapping("/delete/{rabiconsignmentagentId}")
+    @DeleteMapping("/delete/rabi/{consignmentagentId}")
     public ResponseEntity<Void> deleteConsignmentAgent(@PathVariable Long consignmentAgentId) {
         consignmentAgentService.deleteConsignmentAgent(consignmentAgentId);
         logger.info("Deleted RabiConsignmentAgent with ID: {}", consignmentAgentId);

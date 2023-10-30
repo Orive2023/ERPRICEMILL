@@ -51,7 +51,7 @@ private static final Logger logger=LoggerFactory.getLogger(FarmerController.clas
     }
 
     // Get RabiFarmer by ID
-    @GetMapping("/get/{rabifarmerId}")
+    @GetMapping("/get/rabi/{farmerId}")
     public ResponseEntity<FarmerDto> getFarmerById(@PathVariable Long farmerId) {
         Optional<FarmerDto> farmer = farmerService.getFarmerId(farmerId);
         if (farmer.isPresent()) {
@@ -64,7 +64,7 @@ private static final Logger logger=LoggerFactory.getLogger(FarmerController.clas
     }
 
     // Update RabiFarmer by ID
-    @PutMapping("/update/{rabifarmerId}")
+    @PutMapping("/update/rabi/{farmerId}")
     public ResponseEntity<FarmerDto> updateFarmer(@PathVariable Long farmerId, @RequestBody FarmerDto updatedFarmerDto) {
     	FarmerDto updatedFarmer = farmerService.updateFarmer(farmerId, updatedFarmerDto);
         if (updatedFarmer != null) {
@@ -80,7 +80,7 @@ private static final Logger logger=LoggerFactory.getLogger(FarmerController.clas
 
 
     // Delete RabiFarmer by ID
-    @DeleteMapping("/delete/{rabifarmerId}")
+    @DeleteMapping("/delete/rabi/{farmerId}")
     public ResponseEntity<Void> deleteFarmer(@PathVariable Long farmerId) {
         farmerService.deleteFarmer(farmerId);
         logger.info("Deleted RabiFarmer with ID: {}", farmerId);

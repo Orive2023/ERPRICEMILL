@@ -52,7 +52,7 @@ private static final Logger logger=LoggerFactory.getLogger(BrokerController.clas
     }
 
     // Get RabiBroker by ID
-    @GetMapping("/get/{rabibrokerId}")
+    @GetMapping("/get/rabi/{brokerId}")
     public ResponseEntity<BrokerDto> getBrokerById(@PathVariable Long brokerId) {
         Optional<BrokerDto> broker = brokerService.getBrokerById(brokerId);
         if (broker.isPresent()) {
@@ -65,7 +65,7 @@ private static final Logger logger=LoggerFactory.getLogger(BrokerController.clas
     }
 
     // Update RabiBroker by ID
-    @PutMapping("/update/{rabibrokerId}")
+    @PutMapping("/update/rabi/{brokerId}")
     public ResponseEntity<BrokerDto> updateBroker(@PathVariable Long brokerId, @RequestBody BrokerDto updatedBrokerDto) {
     	BrokerDto updatedBroker = brokerService.updateBroker(brokerId, updatedBrokerDto);
         if (updatedBroker != null) {
@@ -81,7 +81,7 @@ private static final Logger logger=LoggerFactory.getLogger(BrokerController.clas
 
 
     // Delete RabiBroker by ID
-    @DeleteMapping("/delete/{rabibrokerId}")
+    @DeleteMapping("/delete/rabi/{brokerId}")
     public ResponseEntity<Void> deleteBroker(@PathVariable Long brokerId) {
         brokerService.deleteBroker(brokerId);
         logger.info("Deleted RabiBroker with ID: {}", brokerId);

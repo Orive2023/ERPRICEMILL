@@ -52,7 +52,7 @@ public class TraderController {
 	    }
 
 	    // Get RabiTrader by ID
-	    @GetMapping("/get/{rabitraderId}")
+	    @GetMapping("/get/rabi/{traderId}")
 	    public ResponseEntity<TraderDto> getTraderById(@PathVariable Long traderId) {
 	        Optional<TraderDto> trader = traderService.getTraderId(traderId);
 	        if (trader.isPresent()) {
@@ -65,7 +65,7 @@ public class TraderController {
 	    }
 
 	    // Update RabiTrader by ID
-	    @PutMapping("/update/{rabitraderId}")
+	    @PutMapping("/update/rabi/{traderId}")
 	    public ResponseEntity<TraderDto> updateTrader(@PathVariable Long traderId, @RequestBody TraderDto updatedTraderDto) {
 	    	TraderDto updatedTrader = traderService.updateTrader(traderId, updatedTraderDto);
 	        if (updatedTrader != null) {
@@ -81,7 +81,7 @@ public class TraderController {
 
 
 	    // Delete RabiTrader by ID
-	    @DeleteMapping("/delete/{rabitraderId}")
+	    @DeleteMapping("/delete/rabi/{traderId}")
 	    public ResponseEntity<Void> deleteTrader(@PathVariable Long traderId) {
 	        traderService.deleteTrader(traderId);
 	        logger.info("Deleted RabiTrader with ID: {}", traderId);

@@ -52,7 +52,7 @@ public class BrokerController {
     }
 
     // Get KharifBroker by ID
-    @GetMapping("/get/{kharifbrokerId}")
+    @GetMapping("/get/kharif/{brokerId}")
     public ResponseEntity<BrokerDto> getBrokerById(@PathVariable Long brokerId) {
         Optional<BrokerDto> broker = brokerService.getBrokerById(brokerId);
         if (broker.isPresent()) {
@@ -65,7 +65,7 @@ public class BrokerController {
     }
 
     // Update KharifBroker by ID
-    @PutMapping("/update/{kharifbrokerId}")
+    @PutMapping("/update/kharif/{brokerId}")
     public ResponseEntity<BrokerDto> updateBroker(@PathVariable Long brokerId, @RequestBody BrokerDto updatedBrokerDto) {
     	BrokerDto updatedBroker = brokerService.updateBroker(brokerId, updatedBrokerDto);
         if (updatedBroker != null) {
@@ -81,7 +81,7 @@ public class BrokerController {
 
 
     // Delete KharifBroker by ID
-    @DeleteMapping("/delete/{kharifbrokerId}")
+    @DeleteMapping("/delete/kharif/{brokerId}")
     public ResponseEntity<Void> deleteBroker(@PathVariable Long brokerId) {
         brokerService.deleteBroker(brokerId);
         logger.info("Deleted KharifBroker with ID: {}", brokerId);

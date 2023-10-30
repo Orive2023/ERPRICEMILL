@@ -51,7 +51,7 @@ public class TraderController {
     }
 
     // Get kharifTrader by ID
-    @GetMapping("/get/{khariftraderId}")
+    @GetMapping("/get/kharif/{traderId}")
     public ResponseEntity<TraderDto> getTraderById(@PathVariable Long traderId) {
         Optional<TraderDto> trader = traderService.getTraderId(traderId);
         if (trader.isPresent()) {
@@ -64,7 +64,7 @@ public class TraderController {
     }
 
     // Update kharifTrader by ID
-    @PutMapping("/update/{khariftraderId}")
+    @PutMapping("/update/kharif/{traderId}")
     public ResponseEntity<TraderDto> updateTrader(@PathVariable Long traderId, @RequestBody TraderDto updatedTraderDto) {
     	TraderDto updatedTrader = traderService.updateTrader(traderId, updatedTraderDto);
         if (updatedTrader != null) {
@@ -80,7 +80,7 @@ public class TraderController {
 
 
     // Delete kharifTrader by ID
-    @DeleteMapping("/delete/{khariftraderId}")
+    @DeleteMapping("/delete/kharif/{traderId}")
     public ResponseEntity<Void> deleteTrader(@PathVariable Long traderId) {
         traderService.deleteTrader(traderId);
         logger.info("Deleted kharifTrader with ID: {}", traderId);
