@@ -18,7 +18,7 @@ public class TraderDto {
 	private Long traderId;
 	private String season;
 	private String personOfContact;
-	private String supplierName;
+	private String traderName;
 	private Long gstin;
 	private String cstNo;
 	private String drugLicenseNo;

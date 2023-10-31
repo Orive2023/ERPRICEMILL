@@ -18,7 +18,7 @@ public class ConsignmentAgentDto {
 	private Long consignmentAgentId;
 	private String season;
 	private String personOfContact;
-	private String supplierName;
+	private String consignmentAgentName;
 	private Long gstin;
 	private String cstNo;
 	private String drugLicenseNo;

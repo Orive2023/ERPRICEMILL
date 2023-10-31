@@ -34,8 +34,8 @@ public class TraderEntity {
 	@Column(name = "person_of_contact")
 	private String personOfContact;
 	
-	@Column(name = "supplier_name")
-	private String supplierName;
+	@Column(name = "trader_name")
+	private String traderName;
 	
 	@Column(name = "gstin")
 	private Long gstin;

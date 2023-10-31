@@ -33,8 +33,8 @@ public class BrokerEntity {
 	@Column(name = "person_of_contact")
 	private String personOfContact;
 	
-	@Column(name = "supplier_name")
-	private String supplierName;
+	@Column(name = "broker_name")
+	private String brokerName;
 	
 	@Column(name = "gstin")
 	private Long gstin;

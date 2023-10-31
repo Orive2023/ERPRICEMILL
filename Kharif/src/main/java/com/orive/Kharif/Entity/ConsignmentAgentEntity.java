@@ -33,8 +33,8 @@ public class ConsignmentAgentEntity {
 	@Column(name = "person_of_contact")
 	private String personOfContact;
 	
-	@Column(name = "supplier_name")
-	private String supplierName;
+	@Column(name = "consignment_agent_name")
+	private String consignmentAgentName;
 	
 	@Column(name = "gstin")
 	private Long gstin;

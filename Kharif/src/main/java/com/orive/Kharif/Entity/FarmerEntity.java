@@ -33,8 +33,8 @@ public class FarmerEntity {
 	@Column(name = "person_of_contact")
 	private String personOfContact;
 	
-	@Column(name = "supplier_name")
-	private String supplierName;
+	@Column(name = "farmer_name")
+	private String farmerName;
 	
 	@Column(name = "gstin")
 	private Long gstin;

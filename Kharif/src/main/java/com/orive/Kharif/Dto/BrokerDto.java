@@ -19,7 +19,7 @@ public class BrokerDto {
     private Long brokerId;
 	private String season;
 	private String personOfContact;
-	private String supplierName;
+	private String brokerName;
 	private Long gstin;
 	private String cstNo;
 	private String drugLicenseNo;

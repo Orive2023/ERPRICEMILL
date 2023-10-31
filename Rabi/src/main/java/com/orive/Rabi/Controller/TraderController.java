@@ -77,9 +77,6 @@ public class TraderController {
 	        }
 	    }
 	    
-	    
-
-
 	    // Delete RabiTrader by ID
 	    @DeleteMapping("/delete/rabi/{traderId}")
 	    public ResponseEntity<Void> deleteTrader(@PathVariable Long traderId) {

@@ -18,7 +18,7 @@ public class FarmerDto {
 	private Long farmerId;
 	private String season;
 	private String personOfContact;
-	private String supplierName;
+	private String farmerName;
 	private Long gstin;
 	private String cstNo;
 	private String drugLicenseNo;
