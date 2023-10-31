@@ -39,7 +39,7 @@ private static final Logger logger=LoggerFactory.getLogger(ConsignmentAgentContr
     @PostMapping("/create/rabiconsignmentagent")
     public ResponseEntity<ConsignmentAgentDto> createConsignmentAgent(@RequestBody ConsignmentAgentDto consignmentAgentDto) {
     	ConsignmentAgentDto createdConsignmentAgent = consignmentAgentService.createConsignmentAgent(consignmentAgentDto);
-        logger.info("Created RabiConsignmentAgent with name: {}", createdConsignmentAgent.getConsignmentAgentId());
+        logger.info("Created RabiConsignmentAgent with name: {}", createdConsignmentAgent.getConsignmentAgentName());
         return new ResponseEntity<>(createdConsignmentAgent, HttpStatus.CREATED);
     }
 

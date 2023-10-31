@@ -38,7 +38,7 @@ private static final Logger logger=LoggerFactory.getLogger(BrokerController.clas
     @PostMapping("/create/rabibroker")
     public ResponseEntity<BrokerDto> createBroker(@RequestBody BrokerDto brokerDto) {
     	BrokerDto createdBroker = brokerService.createBroker(brokerDto);
-        logger.info("Created RabiBroker with name: {}", createdBroker.getBrokerId());
+        logger.info("Created RabiBroker with name: {}", createdBroker.getBrokerName());
         return new ResponseEntity<>(createdBroker, HttpStatus.CREATED);
     }
 

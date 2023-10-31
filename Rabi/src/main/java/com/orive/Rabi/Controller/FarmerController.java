@@ -38,7 +38,7 @@ private static final Logger logger=LoggerFactory.getLogger(FarmerController.clas
     @PostMapping("/create/rabifarmer")
     public ResponseEntity<FarmerDto> createFarmer(@RequestBody FarmerDto farmerDto) {
     	FarmerDto createdFarmer = farmerService.createFarmer(farmerDto);
-        logger.info("Created RabiFarmer with name: {}", createdFarmer.getFarmerId());
+        logger.info("Created RabiFarmer with name: {}", createdFarmer.getFarmerName());
         return new ResponseEntity<>(createdFarmer, HttpStatus.CREATED);
     }
 

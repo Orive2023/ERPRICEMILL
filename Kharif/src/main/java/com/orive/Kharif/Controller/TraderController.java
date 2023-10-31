@@ -38,7 +38,7 @@ public class TraderController {
     @PostMapping("/create/khariftrader")
     public ResponseEntity<TraderDto> createTrader(@RequestBody TraderDto traderDto) {
     	TraderDto createdTrader = traderService.createTrader(traderDto);
-        logger.info("Created kharifTrader with name: {}", createdTrader.getTraderId());
+        logger.info("Created kharifTrader with name: {}", createdTrader.getTraderName());
         return new ResponseEntity<>(createdTrader, HttpStatus.CREATED);
     }
 

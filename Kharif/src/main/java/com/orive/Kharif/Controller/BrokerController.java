@@ -38,7 +38,7 @@ public class BrokerController {
     @PostMapping("/create/kharifbroker")
     public ResponseEntity<BrokerDto> createBroker(@RequestBody BrokerDto brokerDto) {
     	BrokerDto createdBroker = brokerService.createBroker(brokerDto);
-        logger.info("Created KharifBroker with name: {}", createdBroker.getBrokerId());
+        logger.info("Created KharifBroker with name: {}", createdBroker.getBrokerName());
         return new ResponseEntity<>(createdBroker, HttpStatus.CREATED);
     }
 
